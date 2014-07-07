@@ -1,0 +1,94 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,div /* structural elements 结构元素 */
+	dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+	pre, /* text formatting elements 文本格式元素 */
+	fieldset,button, input, textarea, /* form elements 表单元素 */
+	th, td ,img{ /* table elements 表格元素 */
+    margin: 0;
+    padding: 0;
+}
+
+div#Container{
+	width: 100%;
+	height: 150px;
+	background-color: #424242;
+	opacity: 1;
+}
+
+div#img{
+	width: 33%;
+	height: 100%;
+	background: #424242;
+	opacity: 1;
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+
+div#CourseContainer{
+	width:67%;
+	background-color: #424242;
+	opacity: 1;
+	float:left;
+}
+
+div#CourseName{
+	width: 100%;
+	height: 50%;
+	background: #424242;
+	opacity: 0.6;
+	
+}
+div#Notice{
+	width:33%;
+	height: 50%;
+	background: #424242;
+	opacity: 0.6;
+	float: left;
+}
+
+div#blank15{width: 100%;height: 15%;background: #424242;opacity: 1;border: 0px;padding: 0px;margin: 0px;}
+div#blank10{width: 100%;height: 10%;background: #424242;opacity: 1;border: 0px;padding: 0px;margin: 0px;}
+
+
+h3{
+	line-height:50px;
+	color:#fff;margin:0;
+	z-index:1;
+	text-align: center;
+}
+h2{
+	line-height:55px;
+	color:#fff;
+	margin:0;
+	z-index:1;
+	text-align: center;
+}
+p{
+	line-height: 20px;
+	color: #fff;
+	margin: 0;
+	z-index: 1;
+}
+hr{
+	text-align: center;
+}
+
+a.one:link{color: #fff;text-decoration: none;}
+a.one:visited{color: #fff;text-decoration: none;}
+a.one:hover{color: #ffcc00;text-decoration: underline;}
+
+a.two:link{color: #fff;text-decoration: none;}
+a.two:visited{color: #fff;text-decoration: none;}
+a.two:hover{color: #B22222;text-decoration: underline;}
+
+a.three:link{color: #fff;text-decoration: none;}
+a.three:visited{color: #fff;text-decoration: none;}
+a.three:hover{color: #7CFC00;text-decoration: underline;}
+
+a.four:link{color: #fff;text-decoration: none}
+a.four:visited{color: #fff;text-decoration: none;}
+a.four:hover{color: #FF00FF;text-decoration: underline;}
+
+a.five:link{color: #fff;text-decoration: none}
+a.five:visited{color: #fff;text-decoration: none;}
+a.five:hover{color: #00FF7F;text-decoration: underline;}
