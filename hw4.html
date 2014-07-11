@@ -1,0 +1,593 @@
+﻿<!DOCTYPE html>
+<head xmlns="http://www.w3.org/1999/xhtml">
+	<title>Hw4</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+</head>
+<style type="text/css">
+*{
+	margin: 0;
+	padding: 0;}
+
+div#bg{
+	position: absolute;
+	top:-100px;
+	z-index: -4;}
+div#bgbottom{
+	width: 1440px;
+	height: 900px;
+	top: 890px;
+	position: absolute;
+	z-index: -2;}
+.blank{
+	width: 100%;
+	height: 350px;
+	margin: 0px;
+	padding: 0px;
+	opacity: 0;
+	overflow: hidden;}
+.Leftside{
+	width: 280px;
+	height: 585px;
+	margin: 0px;
+	padding: 0px;
+	opacity: 0.3;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 350px;
+	z-index: -1;}
+.Rightside{
+	width: 250px;
+	height: 585px;
+	margin: 0px;
+	padding: 0px;
+	opacity: 0.3;
+	overflow: hidden;
+	position: absolute;
+	left: 1190px;
+	top: 350px;
+	z-index: -1;}
+.Leftimgbox{
+	width:1024px;
+	height: 640px;
+	position: absolute;
+	left: -200px;
+	z-index: 0;}
+.Rightimgbox{
+	width:1024px;
+	height: 640px;
+	position: absolute;
+	right: -150px;
+	z-index:0;}
+.box{
+	width: 910px;
+	height: 585px;
+	margin: 0px;
+	border: 1px solid #aaa;
+	background-color: #000000;	
+	left: 280px;
+	overflow: hidden;
+	position: absolute;}
+.box1:hover { 
+	opacity:1;
+	filter:alpha(opacity=80);
+	-webkit-transition:all 0.2s linear;
+	-moz-transition:all 0.2s linear;
+	-ms-transition:all 0.2s linear;
+	-o-transition:all 0.2s linear;
+	transition:all 0.2s linear;}
+.box2:hover { 
+	opacity:1;
+	filter:alpha(opacity=80);
+	-webkit-transition:all 0.2s linear;
+	-moz-transition:all 0.2s linear;
+	-ms-transition:all 0.2s linear;
+	-o-transition:all 0.2s linear;
+	transition:all 0.2s linear;}
+.box1,.box2{
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	width: 455px;
+	height: 590px;
+	position: absolute;
+	opacity: 0.7;}
+.box1{left: 0px;}
+.box2{right: 0px;}
+.lcurrent,.rcurrent,.lnext,.rnext{
+	width: 455px;
+	height: 585px;
+	top:0px;
+	position: absolute;}
+.lcurrent{
+	left: 0px;
+	z-index: 1;}
+.rcurrent{
+	right: 0px;
+	z-index: 1;}
+.lnext{
+	left: -455px;
+	z-index: 2;}
+.rnext{
+	right: -455px;
+	z-index: 2;}
+.lcurrent,.rcurrent,.lnext,.rnext img{display: block;}
+.arrleft,.arrright{
+	width: 28px;
+	height: 51px;
+	z-index: 9;
+	position: absolute;
+	cursor: pointer;}
+.arrleft{
+	background: url("img/previous.png") no-repeat;
+	left:0px;
+	top:290px;}
+.arrright{
+	background:url("img/next.png") no-repeat;
+	right: 0px;
+	top: 290px;}
+.text{
+	width: 912px;
+	height: 50px;
+	top:940px;
+	left: 280px;
+	opacity: 0.5;
+	position: absolute;
+	z-index: 1;
+	background: #000;}
+.text:hover{
+	opacity:0.8;
+	filter:alpha(opacity=80);
+	-webkit-transition:all 0.2s linear;
+	-moz-transition:all 0.2s linear;
+	-ms-transition:all 0.2s linear;
+	-o-transition:all 0.2s linear;
+	transition:all 0.2s linear;}
+.CommentBox{
+	width: 910px;
+	height: 670px;
+	position: absolute;
+	z-index: 2;
+	left: 280px;
+	top:1000px;
+	background: #E0ECF8;
+	opacity: 0.8;
+	border-radius: 25px;}
+div#CommentTitle{
+	width: 910px;
+	height: 30px;
+	position: relative;
+	z-index: 3;
+	top: 20px;
+
+	background: #424242;}
+.BlankComment{
+	width: 910px;
+	height: 25px;
+	background: #000000;
+	opacity: 0;
+	position: relative;
+	z-index: 2;}
+.UserComment{
+	width: 870px;
+	height: 180px;
+	left: 20px;
+	background:#2E2E2E;
+	opacity: 1;
+	position: relative;
+	border-radius: 20px;}
+.AuthorInfo{
+	width: 110px;
+	height: 100px;
+	padding: 20px;
+	position: relative;
+	float: left;}
+.AuthorComment{
+	width: 500px;
+	height: 140px;
+	padding: 20px;
+	position: relative;;
+	float: left;
+	color: #fff;}
+.AuthorDate{
+	width: 120px;
+	height: 140px;
+	padding: 20px;
+	position: relative;
+	float: left;
+	color: #fff;
+	font-size: 20px;}
+p{
+	line-height: 20px;
+	color: #fff;
+	margin: 0px;
+	position: absolute;
+	z-index: 3;}
+p#title{
+	font-size: 25px;
+	color: #fff;
+	z-index: 4;}
+p#author{
+	bottom: -20px;
+	}
+span{
+	font-size: 20px;
+	z-index: 4;
+	color: #fff;}
+.ChangePage{
+	float: right;
+	cursor: pointer;
+	z-index: 5;}
+.Memory{
+	position: absolute;
+	top: 1740px;
+	left: 280px;
+	z-index: 7;
+	
+	width: 910px;
+	height: 40px;
+	font-size: 25px;
+	text-align: center;
+	color: #fff;}
+</style>
+<script type="text/javascript" src = "js/m_js.js"></script>
+<script type="text/javascript" src = "js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+var xmlhttp1,xmlhttp2,xmlhttp;
+var json;
+var CommentPos;
+var CommentPageLength;
+var NextComment;
+var Prejquery,Nextjquery;
+var list = new Array();
+list[0] = "CharacterDesign";
+list[1] = "Environments";
+list[2] = "WeaponsAndGear";
+list[3] = "Vehicles";
+list[4] = "TheArtOfGameDesign";
+var storage = window.localStorage;
+function loadDoc(url,flag)
+{
+	if(flag == 1){
+		xmlhttp1 = null;
+		if (window.XMLHttpRequest)
+  		{// code for Firefox, Opera, IE7, etc.
+  			xmlhttp1 = new XMLHttpRequest();
+  		}
+		else if (window.ActiveXObject)
+  		{// code for IE6, IE5
+  			xmlhttp1 = new ActiveXObject("Microsoft.XMLHTTP");
+ 		}
+ 		if(xmlhttp1!=null){
+ 			xmlhttp1.onreadystatechange = state_Change1;
+  			xmlhttp1.open("GET",url,true);
+  			xmlhttp1.send();
+ 		}
+	}
+	else if(flag == 2){
+		xmlhttp2 = null;
+		if (window.XMLHttpRequest)
+  		{// code for Firefox, Opera, IE7, etc.
+  			xmlhttp2 = new XMLHttpRequest();
+  		}
+		else if (window.ActiveXObject)
+  		{// code for IE6, IE5
+  			xmlhttp2 = new ActiveXObject("Microsoft.XMLHTTP");
+ 		}
+ 		if(xmlhttp2!=null){
+ 			xmlhttp2.onreadystatechange = state_Change2;
+  			xmlhttp2.open("GET",url,true);
+  			xmlhttp2.send();
+ 		}
+	}
+	else if(flag == 3){
+		xmlhttp = null;
+		if (window.XMLHttpRequest)
+  		{// code for Firefox, Opera, IE7, etc.
+  			xmlhttp = new XMLHttpRequest();
+  		}
+		else if (window.ActiveXObject)
+  		{// code for IE6, IE5
+  			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+ 		}
+ 		if(xmlhttp!=null){
+ 			xmlhttp.onreadystatechange = state_Change3;
+  			xmlhttp.open("GET",url,true);
+  			xmlhttp.send();
+ 		}
+	}
+	else if(flag == 4){
+		xmlhttp = null;
+		if (window.XMLHttpRequest)
+  		{// code for Firefox, Opera, IE7, etc.
+  			xmlhttp = new XMLHttpRequest();
+  		}
+		else if (window.ActiveXObject)
+  		{// code for IE6, IE5
+  			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+ 		}
+ 		if(xmlhttp!=null){
+ 			xmlhttp.onreadystatechange = state_Change4;
+  			xmlhttp.open("GET",url,true);
+  			xmlhttp.send();
+ 		}
+	}
+	else
+  	{
+ 	 	alert("Your browser does not support XMLHTTP.");
+  	}
+}
+
+function state_Change1()
+{
+	if(xmlhttp1.readyState==4)
+  	{// 4 = "loaded"
+  		if (xmlhttp1.status==200)
+    	{// 200 = "OK"
+    		var info = xmlhttp1.responseText;
+    		//debugger;
+    		json = eval("("+info+")");
+    		//debugger;
+    		
+    	}
+  		else
+    	{
+    		alert("Problem retrieving data:" + xmlhttp1.statusText);
+    	}
+  	}
+}
+
+function state_Change2()
+{
+	if(xmlhttp2.readyState==4)
+  	{// 4 = "loaded"
+  		if (xmlhttp2.status==200)
+    	{// 200 = "OK"
+    		var info = xmlhttp2.responseText;
+    		//debugger;
+    		CommentPos = eval("("+info+")");
+    		CommentPageLength = CommentPos.COMMENT.length;
+    		//debugger;
+    		
+    	}
+  		else
+    	{
+    		alert("Problem retrieving data:" + xmlhttp2.statusText);
+    	}
+  	}
+}
+
+function state_Change3()
+{
+	if(xmlhttp.readyState==4)
+  	{// 4 = "loaded"
+  		if (xmlhttp.status==200)
+    	{// 200 = "OK"
+    		var info = xmlhttp.responseText;
+    		
+    		NextComment = eval("("+info+")");
+
+    	
+			var a = Nextjquery.childNodes[1].id.substring(6);
+			var n = parseInt(a);
+			if(n >= (CommentPageLength - 1))
+			{
+				return;
+			}
+    		var txt = document.getElementsByClassName('record');
+			Nextjquery.childNodes[1].id = "Record" + (n+1);
+			txt[0].innerText = "第"+(3*n+4)+"-"+(3*n+6)+"条记录";
+
+			updateComment();
+	    		//debugger;	
+	    	}
+	  		else
+	    	{
+	    		alert("Problem retrieving data:" + xmlhttp.statusText);
+	    	}
+  	}
+}
+
+function state_Change4()
+{
+	if(xmlhttp.readyState==4)
+  	{// 4 = "loaded"
+  		if (xmlhttp.status==200)
+    	{// 200 = "OK"
+    		var info = xmlhttp.responseText;
+    		NextComment = eval("("+info+")");
+
+    		var a = Prejquery.childNodes[1].id.substring(6);
+			var n = parseInt(a);
+    		var txt = document.getElementsByClassName('record');
+			Prejquery.childNodes[1].id = "Record" + (n-1);
+		
+			txt[0].innerText = "第"+(3*n-2)+"-"+(3*n)+"条记录";
+			updateComment();
+    		//debugger;	
+    	}
+  		else
+    	{
+    		alert("Problem retrieving data:" + xmlhttp.statusText);
+    	}
+  	}
+}
+//loadDoc('https://raw.githubusercontent.com/MyXOF/hw4.github.io/master/JSON.json');
+
+ $(document).ready(function(){
+ 	loadDoc('https://rawgit.com/MyXOF/hw4.github.io/master/JSON/JSON.json',1);
+
+ 	var t;
+ 	//$(".box").mouseleave(function(evt){
+	//loadDoc('JSON/JSON.json',0);setInterval('autoPlay(json.Picture)',3000);
+	autokey = false;
+	var  repeat = "autoPlay()";
+    t = setInterval(repeat,5000);
+	//debugger;
+		//evt.stopPropagation();
+	//});
+ 	$(".box").mouseleave(function(evt){
+ 		autokey = false;
+ 		var  repeat = "autoPlay()";
+    	t = setInterval(repeat,5000);})
+	$(".box").mouseover(function(evt){
+		autokey = true;
+		clearTimeout(t);
+	});
+ });
+
+$(document).ready(function(){
+	loadDoc('https://rawgit.com/MyXOF/hw4.github.io/master/JSON/COMMENT.json',2);
+});
+
+$(document).ready(function(){
+	$(".arrleft").click(function(){
+	//alert("1");
+	
+	manualPlay(json.Picture,2);
+	//evt.stopPropagation();
+	NextToCurrent();
+	});
+});
+
+$(document).ready(function(){
+	$(".arrright").click(function(){
+	//alert("2");
+
+	manualPlay(json.Picture,1);
+	NextToCurrent();
+	//evt.stopPropagation();
+	}
+	);
+});
+
+$(document).ready(function(){
+	$('#Next').click(function(){
+		Nextjquery = document.getElementById('CommentTitle');
+		if(!Nextjquery){
+			return;
+		}
+		var a = Nextjquery.childNodes[1].id.substring(6);
+		var n = parseInt(a);
+		if(n >= (CommentPageLength - 1))
+		{
+			return;
+		}
+		loadDoc(CommentPos.COMMENT[n+1].pos,3);
+		//if(!NextComment){return;}
+		//debugger;
+		
+		//debugger;
+	});
+});
+
+$(document).ready(function(){
+	$('#Pre').click(function(){
+		Prejquery = document.getElementById('CommentTitle');
+		if(!Prejquery){
+			return;
+		}
+		var a = Prejquery.childNodes[1].id.substring(6);
+		var n = parseInt(a);
+		if((n - 1) < 0)
+		{
+			return;
+		}
+		loadDoc(CommentPos.COMMENT[n-1].pos,4);
+		//if(!NextComment){return;}
+		
+		//debugger;
+	});
+});
+
+
+$(document).ready(function(){
+	
+	if(storage.getItem("LeftImgIndex") && storage.getItem("RightImgIndex"))
+	{
+		if( (storage.getItem("LeftImgIndex") != "404") && (storage.getItem("RightImgIndex") != "404") ){
+			var l = storage.RightImgIndex.length;
+			var s = storage.RightImgIndex[l-6];
+			var n = parseInt(s);
+	
+			var str = "您上次浏览的图片类型是：'"+list[n]+"',对应的图片索引为：'"+storage.LeftImgIndex+"'和'"+storage.RightImgIndex+"'.";
+			alert(str);	
+		}
+	}
+	if(!storage.getItem("LeftImgIndex")){
+		storage.setItem("LeftImgIndex","404");
+	}
+	if(!storage.getItem("RightImgIndex")){
+		storage.setItem("RightImgIndex","404");
+	}
+
+	
+
+	
+});
+</script>
+<body>
+	<div id = "bg">
+	<img src = "img/bg.png" alt = "halo2" width="1440px"/>
+	</div>
+	<div class = "blank" ></div>
+	<div class = "Leftside">
+		<div class = "Leftimgbox">
+		<img src="img/Leftside.jpg" alt = "" /></div>
+		</div>
+	<div class = "box">
+		<div class = "box1">
+			<div class = "lcurrent" id = "0"><img src = "img/01.jpg" alt = "" /></div>
+			<div class = "arrleft"></div>
+			</div>
+		<div class = "box2">
+			<div class = "rcurrent" id = "0"><img src = "img/02.jpg" alt = "" /></div>
+			<div class = "arrright" type = "button"></div>
+			</div>
+	</div>
+	<div class = "Rightside"><div class = "Rightimgbox"><img src="img/Rightside.jpg" alt = ""></div></div>
+	<div class = "text"><p>本作的人物设计应该是《HALO》系列中最独特的，除了玩家熟悉的士官长以外，还加入了“神风烈士”这一新角色，让玩家以星盟的视角理解HALO，也为后续的作品做铺垫.</p></div>
+	</div>
+	<div id = "bgbottom"><img src="img/origin.jpg" alt = ""/></div>
+	<div class = "CommentBox">
+		<div id = "CommentTitle">
+			<span id = "Record0" class = "record">第1-3条记录</span>
+			<span>/共9条记录</span>
+			<span class = "ChangePage" id = "Next">--下一页--</span>
+			<span class = "ChangePage" id = "Pre">--上一页--</span>
+		</div>
+		<div class = "BlankComment"></div>
+		<div class = "UserComment" id = "comment1">
+			<div class = "AuthorInfo"><img src="img/author0.jpeg" alt = ""/><p id = "author">雷神士官长117</p></div>
+			<div class = "AuthorComment">希望343在吸取了HALO4的教训，玩家的批评后能在HALO5里把各种东西的该回来。。。</div>
+			<div class = "AuthorDate">
+				<p>#1</p>
+				<br/>
+				<p class = "Date">2012-12-08 10:18</p>
+			</div>
+		</div>
+		<div class = "BlankComment"></div>
+		<div class = "UserComment" id = "commnet2">
+			<div class = "AuthorInfo"><img src="img/author1.jpeg" alt = ""/><p id = "author">HALOGEAR</p></div>
+			<div class = "AuthorComment">这很是不可能</div>
+			<div class = "AuthorDate">
+				<p>#2</p>
+				<br/>
+				<p class = "Date">2012-12-08 10:21</p>
+			</div>
+		</div>
+		<div class = "BlankComment"></div>
+		<div class = "UserComment" id = "comment3">
+			<div class = "AuthorInfo"><img src="img/author2.jpeg" alt = ""/><p id = "author">全自动思考</p></div>
+			<div class = "AuthorComment">楼上＋1</div>
+			<div class = "AuthorDate">
+				<p>#3</p>
+				<br/>
+				<p class = "Date">2012-12-08 10:42</p>
+			</div>
+		</div>
+		
+	</div>
+	<div class = "Memory">Remember Reach.Author: Emaster</div>
+	</body>
+</html>
