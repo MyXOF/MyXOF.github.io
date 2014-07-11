@@ -152,6 +152,7 @@ div#bgbottom{
 	top:1000px;
 	background: #E0ECF8;
 	opacity: 0.8;
+	filter:alpha(opacity = 60);
 	border-radius: 25px;}
 div#CommentTitle{
 	width: 910px;
@@ -175,6 +176,7 @@ div#CommentTitle{
 	background:#2E2E2E;
 	opacity: 1;
 	position: relative;
+	z-index: 3;
 	border-radius: 20px;}
 .AuthorInfo{
 	width: 110px;
@@ -511,7 +513,12 @@ $(document).ready(function(){
 			var n = parseInt(s);
 	
 			var str = "您上次浏览的图片类型是：'"+list[n]+"',对应的图片索引为：'"+storage.LeftImgIndex+"'和'"+storage.RightImgIndex+"'.";
-			alert(str);	
+			alert(str);
+			var LeftIndex = document.getElementsByClassName('lcurrent');
+			storage.LeftImgIndex = LeftIndex[0].childNodes[0].src;
+
+			var RightIndex = document.getElementsByClassName('rcurrent');
+			storage.RightImgIndex = RightIndex[0].childNodes[0].src;	
 		}
 	}
 	if(!storage.getItem("LeftImgIndex")){
