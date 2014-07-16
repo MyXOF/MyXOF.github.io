@@ -7,7 +7,7 @@ $(document).ready(function(){
 	var ImgArray = new Array;
 	alert(head);
 	ImgArray[0] = head + "areaboard.png";
-	ImgArray[1] = head + "imageareatools.png";
+	ImgArray[1] = head + "areatools.png";
 	ImgArray[2] = head + "statusImg.png";
 	ImgArray[3] = head + "logo.png";
 	ImgArray[4] = head + "MenuImg.png";
