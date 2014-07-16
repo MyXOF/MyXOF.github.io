@@ -1,0 +1,197 @@
+.clearfix:after{
+	visibility:hidden;
+	display:block;
+	content:" ";
+	clear:both;
+	height:0;
+}
+.clearfix{
+	zoom:1;
+}
+
+.area-whole{
+	position:relative;
+	display:block;
+	min-width:1200px;
+	min-height:550px;
+}
+
+.area-main{
+	cursor:default;
+	position:relative;
+	overflow:hidden;
+	height:100%;
+	
+
+	margin-left: 240px;
+}
+
+.area-menu{
+	float:left;
+	width:240px;
+	height:100%;
+	background-image: url("../image/MenuImg.png");
+	background-size:100% 100%;
+	background-repeat:  no-repeat;
+	border-radius: 25px;
+
+}
+
+.area-spinning{
+	
+	height:40%;
+	background-image: url("../image/spinImg.png");
+	background-size:100% 100%;
+	background-repeat:  no-repeat;
+	border-radius: 25px;
+	-webkit-transform-style:preserve-3d;
+	-webkit-perspective: 5000;
+}
+
+.area-playboard{
+	height:60%;
+
+}
+
+.area-board{
+	margin-right:200px;
+	height:100%;
+	
+	
+	overflow:auto;
+	background-image: url("../image/areaboard.png") ;
+	background-repeat:  no-repeat;
+	background-size:100% 100%;
+	border-radius: 25px;
+
+}
+
+.area-tools{
+	float:right;
+	width:200px;
+	background-image: url("../image/areatools.png");
+	background-size:100% 100%;
+	background-repeat:  no-repeat;
+	border-radius: 25px;
+	height:100%;
+	
+	overflow:auto;
+}
+
+.logo{
+	height:17%;
+	overflow: hidden;
+}
+
+.menu{
+	height:33%;
+	
+	overflow:auto;
+}
+
+.status{
+	height:50%;
+
+}
+img{
+	width: 100%;
+	height: 100%;
+}
+.statusImg{
+	position: absolute;
+	bottom: 0px;
+	width: 220px;
+	height: 200px;
+	overflow: hidden;	
+	background-image: url("../image/statusImg.png");
+	background-size:100% 100%;
+	background-repeat:  no-repeat;
+
+}
+
+.spinImg{
+	position: absolute;
+	right: 0px;
+	width: 28%;
+	height: 40%;
+	top:0px;
+	overflow: hidden;
+	opacity: 0.8;
+	background-image: url("../image/spinImg.png");
+	background-size:100% 100%;
+	background-repeat:  no-repeat;
+}
+.spinImg:hover{
+	opacity: 1;
+}
+
+
+
+.door{
+	position: absolute;
+	border-radius: 25px;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	z-index: 3;
+	background-image: url("../image/door.png");
+	background-size:100% 100%;
+	background-repeat:  no-repeat;
+}
+.wood1,.wood2{
+	position: absolute;
+	
+	height: 100%;
+	z-index:5;
+	width: 10%;
+	border-radius: 10px;
+	background-image: url("../image/wood.png");
+	background-size:100% 100%;
+	background-repeat:  no-repeat;
+}
+
+.wood1{
+	left: 10%;
+	top:0%;
+}
+
+.wood2{
+	right: 10%;
+	bottom: 0%;
+}
+
+/*以下是我加的*/
+.cover{
+	position: absolute;
+	width:100%;
+	height: 100%;
+	z-index: 1100;
+	background-color: white;	 
+}
+
+.Loading{
+	
+
+	position: relative;
+	width: 200px;
+	height: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	top:30%;
+	background-image: url("../image/Loading.gif");
+	background-size:100% 100%;
+	background-repeat:  no-repeat;
+}
+
+.Loading p{
+	position: absolute;
+	top:40%;
+	left: 19%;
+	font-size: 25px;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+
+

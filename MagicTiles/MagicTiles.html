@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="decription" content="魔法方块">
+	<meta name="keywords" content="创意前端游戏 魔法方块">
+	<link rel="stylesheet" type="text/css" href="./css/layout.css">
+	<link rel="stylesheet" type="text/css" href="./css/playboard.css">
+	<link rel="stylesheet" type="text/css" href="./css/menu.css">
+	<link rel="stylesheet" type="text/css" href="./css/spinning.css">
+	<script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="./js/layout.js"></script>
+	<script type="text/javascript" src="./js/playboard.js"></script>
+	<script type="text/javascript" src="./js/control.js"></script>
+	<script type="text/javascript" src="./js/spinning.js"></script>
+	<script type="text/javascript" src="./js/message.js"></script>
+
+	<script type="text/javascript" src="./js/LoadPicture.js"></script>
+
+</head>
+<body onselectstart="return false">
+	<div class = "cover">
+		<div class = "Loading"><p>页面加载中</p></div>
+	</div>
+	<div class="area-whole" >
+		<div class="message">
+			<div class="message-title"></div>
+			<div class="message-content"></div>
+		</div>
+		<div class="area-menu">
+			<div class="logo">
+				<img src="./image/logo.png">
+			</div>
+			<div class="menu">
+				<ul class="menu-group clearfix">
+					<li class="menu-button" id = "button-start"><a>开始游戏</a></li>
+					<li class="menu-button" id = "button-save"><a href="javascript:void(0);">储存游戏</a></li>
+					<li class="menu-button" id = "button-load"><a href="javascript:void(0);">载入游戏</a></li>
+					<li class="menu-button" id = "button-setting"><a href="javascript:void(0);">游戏设置</a></li>
+					<li class="menu-button" id = "button-help"><a>游戏帮助</a></li>
+					<li class="menu-button" id = "button-achievement"><a href="javascript:void(0);">查看成就</a></li>
+					<li class="menu-button" id = "button-exit"><a>结束游戏</a></li>
+				</ul>
+			</div>
+			<div class="status">
+				<div class = "score">Score:0</div>
+				<div class = "timer">60s</div>
+				<div class = "statusImg"></div>
+			</div>
+		</div>
+		
+		<div class="area-main">
+			<div class = "door"></div>
+			<div class="area-spinning">
+			</div>
+			<div class="area-playboard">
+				<div class="area-tools">
+					<span class="tools" id = "Row">Row</span>
+					<span class="tools" id = "Column">Column</span>
+					<span class="tools" id = "Block">Block</span>
+					<span class="tools" id = "Color">Color</span>
+					<span class="tools"></span>
+					<span class="tools"></span>
+					<span class="tools"></span>
+					<span class="tools"></span>
+					<span class="tools"></span>
+					<span class="tools"></span>
+					<span class="tools"></span>
+				</div>
+				<div class="area-board">
+					游戏盘
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+.Ring{
+	width: 60%;
+	height: 100px;
+	position: absolute;
+	top: 30%;
+	left: 15%;
+	
+	-webkit-transform-style: preserve-3d;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+
+#ring-1{
+    -webkit-animation-name: y-spin;
+     -webkit-animation-duration: 60s;
+}
+
+#ring-2 {
+	-webkit-animation-name: back-y-spin;
+	-webkit-animation-duration: 60s;
+}
+@-webkit-keyframes y-spin {
+    0%    { -webkit-transform: rotateY(0deg); }
+    50%   { -webkit-transform: rotateY(180deg); }
+    100%  { -webkit-transform: rotateY(360deg); }
+}
+
+@-webkit-keyframes back-y-spin {
+	0%    { -webkit-transform: rotateY(360deg); }
+	50%   { -webkit-transform: rotateY(180deg); }
+	100%  { -webkit-transform: rotateY(0deg); }
+}
+
+.Cube{
+	width: 100px;
+	height: 100%;
+	left: 250px;
+	opacity: 1;
+	color: rgba(0,0,0,0.9);
+	position: absolute;
+	background-color: rgba(127, 127, 127, 0.5);
+}
+
+.blank{
+	width: 800px;
+	height: 150px;
+	opacity: 0;
+	-webkit-transform-style: preserve-3d;
+	background-color: #424242;
+	position:absolute;
+	top: 0px;
+	left:0px;
+	-webkit-animation-name: back-y-spin;
+	-webkit-animation-duration: 60s;
+	
+	 -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    
+}
+
+.slit{
+	width: 2px;
+	height: 100px;
+	background-color: #000000;
+	position:absolute;
+}
