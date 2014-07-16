@@ -5,7 +5,7 @@ $(document).ready(function(){
 	var head = GetHomePage(CurrentUrl);
 	head = head + "image/"
 	var ImgArray = new Array;
-	alert(head);
+	
 	ImgArray[0] = head + "areaboard.png";
 	ImgArray[1] = head + "areatools.png";
 	ImgArray[2] = head + "statusImg.png";
