@@ -13,7 +13,7 @@
 	position:relative;
 	display:block;
 	min-width:1200px;
-	min-height:550px;
+	min-height:600px;
 }
 
 .area-main{
@@ -84,13 +84,13 @@
 }
 
 .menu{
-	height:33%;
+	height:28%;
 	
 	overflow:auto;
 }
 
 .status{
-	height:50%;
+	height:55%;
 
 }
 img{
@@ -125,7 +125,9 @@ img{
 	opacity: 1;
 }
 
-
+/*
+以下是修改过的
+*/
 
 .door{
 	position: absolute;
@@ -160,7 +162,6 @@ img{
 	bottom: 0%;
 }
 
-/*以下是我加的*/
 .cover{
 	position: absolute;
 	width:100%;
@@ -191,7 +192,4 @@ img{
 	margin: 0px;
 	padding: 0px;
 }
-
-
-
 

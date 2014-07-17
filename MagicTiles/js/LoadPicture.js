@@ -1,3 +1,13 @@
+/*
+ 	* LoadPicture.js
+ 	* 功能：图片的预加载
+ 	* 实现：徐毅
+ 	* 主要技术：AJAX
+	 * 函数功能说明：
+	 * GetHomePage 获取当前地址的主目录
+ */	
+
+
 var PICTURE_NUMBER = 7;
 var PICTURE_READY = 0; 
 $(document).ready(function(){

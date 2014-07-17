@@ -1,9 +1,16 @@
-var Ring_Num = 12;
-var Ring_Radius = 350;
-var FlagDoorOpen = false;
-var DOOR_STATUS = 0;
-var MoveD,MoveRW,MoveLW;
+/*
+ * spinning.js
+ * 功能：实现转盘的功能、以及开始和结束游戏动画的设计
+ * 实现：徐毅
+ * 主要技术：CSS3动画、DOM
+ * 函数功能说明：
+ * CreateRing 生成一个新的转盘
+ * MoveDoor 遮挡板的移动动画实现
+ * OpenDoor 打开遮挡板
+ * CloseDoor 关闭遮挡板
+*/
 
+/*生成一个新的转盘*/
 function CreateRing(ring,n){
 	 	var Angle = 360 / Ring_Num;
 	 	for(var i = 0;i < Ring_Num;i++){
@@ -22,6 +29,7 @@ function CreateRing(ring,n){
 		ring.appendChild(Blank);*/
 }
 
+/*遮挡板的移动动画实现*/
 function MoveDoor(elementClass,final_x,final_y,interval){
 	if(!document.getElementsByClassName) return false;
   	if(!document.getElementsByClassName(elementClass)) return false;
@@ -71,7 +79,7 @@ function MoveDoor(elementClass,final_x,final_y,interval){
   MoveD = setTimeout(repeat,interval);
 }
 
-
+/*打开遮挡板*/
 function OpenDoor(txt){
 	DOOR_STATUS = 1;
 	FlagDoorOpen = false;
@@ -81,24 +89,13 @@ function OpenDoor(txt){
 		
 		MoveDoor(txt,0-width,0,55);
 		//debugger;
-
-	
 }
 
+/*关闭遮挡板*/
 function CloseDoor(txt){
 	DOOR_STATUS = 1;
 	FlagDoorOpen = false;
 	MoveDoor(txt,0,0,55);
 	
 	
-}
-
-
-function set_Period(time){
-	$("#ring-1").css("-webkit-animation-play-state", "paused");
-	$(".blank").css("-webkit-animation-play-state", "paused");
-	$("#ring-1").css("-webkit-animation-duration", time + "s");
-	$(".blank").css("-webkit-animation-duration", time + "s");
-	$("#ring-1").css("-webkit-animation-play-state", "running");
-	$(".blank").css("-webkit-animation-play-state", "running");
 }

@@ -11,7 +11,7 @@
 .menu-button a:hover{
 	background-color: orange;
 }
-#button-start,#button-exit,#button-load,#button-save,#button-help,#button-achievement,#button-setting{
+#button-start,#button-exit,#button-load,#button-save,#button-help,#button-achievement,#button-restart{
 	background-size:100% 100%;
 	
 	background-repeat:  no-repeat;
@@ -23,7 +23,7 @@
 #button-load,#button-help{
 	background-image: url("../image/button-blue.png");
 }
-#button-setting,#button-save{
+#button-restart,#button-save{
 	background-image: url("../image/button-green.png");
 }
 #button-achievement{
@@ -87,7 +87,7 @@
 	position: absolute;
 	border-radius: 10px;
 	height: 10%;
-	width: 15%;
+	width: 20%;
 	top: 0;
 	left: 5%;
 	background-color: rgba(154,55,0,0.5);
@@ -122,7 +122,7 @@
 	font-family: Times,Georgia, serif;
 	font-size: 20px;
 	border:0px;
-	margin: 0px;
+	margin: 10px;
 	color: #ffffff;
 }
 
@@ -134,16 +134,43 @@
 }
 
 .message-button{
-	width: 100px;
-	height: 50px;
-	position: absolute;
+	transition: border 0.1s;
+	-webkit-transition: border 0.1s;
+	width: 80px;
+	height: 34px;
+	line-height: 30px;
+	position: relative;
 	z-index: 1000;
-	border-radius: 10px;
+	border-radius: 5%;
 	cursor: pointer;
+	background-color: red;
+	text-align: center;
+	margin:auto;
+	margin-left: 20px;
+	float:left;
+	border: 2px solid rgba(0, 0, 0, 0);
+	font-weight: bold;
 }
 
-#mybutton{
-	bottom: 0;
-	left: 40%;
+.message-button:hover{
+	border: 2px solid black;
+}
+
+#type1{
 	background-color: red;
+}
+
+#type2{
+	background-color: green;
+}
+
+#type3{
+	background-color: blue;
+}
+
+.audio{
+	margin:auto;
+	cursor:pointer;
+	height:32px;
+	width:32px;
 }

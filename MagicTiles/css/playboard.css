@@ -48,10 +48,6 @@ table.playboard{
 	opacity:1;
 }
 
-.playboard td:hover{
-	opacity: 1;
-}
-
 .playboard td{
 	cursor:inherit;
 	color: #000000;
@@ -88,6 +84,9 @@ table.playboard{
 	opacity:1;
 	transition: border-radius 0.5s;
 	-webkit-transition: border-radius 0.5s;
+
+	background-size:100% 100%;
+	background-repeat:  no-repeat;
 }
 
 
@@ -97,24 +96,32 @@ table.playboard{
 /*以下是修改过的*/
 #Row{
 	background-image: url("../image/Row.png");
-	background-size:100% 100%;
-	background-repeat:  no-repeat;
 }
 
 #Column{
 	background-image: url("../image/Column.png");
-	background-size:100% 100%;
-	background-repeat:  no-repeat;
 }
 
 #Block{
 	background-image: url("../image/Block.png");
-	background-size:100% 100%;
-	background-repeat:  no-repeat;
 }
 
 #Color{
 	background-image: url("../image/Color.png");
-	background-size:100% 100%;
-	background-repeat:  no-repeat;
+}
+
+#Cross{
+	background-image: url("../image/Cross.png");
+}
+
+#Bomb{
+	background-image: url("../image/Bomb.png");
+}
+
+#Female{
+	background-image: url("../image/Female.png");
+}
+
+#Male{
+	background-image: url("../image/Male.png");
 }
