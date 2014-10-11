@@ -1,7 +1,0 @@
-#include <tunables/global>
-
-/popush/bin/python {
-  #include <abstractions/base>
-  #include <abstractions/python>
-  /popush/tmp/** r,
-}

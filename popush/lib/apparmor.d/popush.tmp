@@ -1,5 +1,0 @@
-#include <tunables/global>
-
-/popush/tmp/** {
-  #include <abstractions/base>
-}
