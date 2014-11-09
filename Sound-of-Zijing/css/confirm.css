@@ -25,5 +25,20 @@
 
 #Confirm-Title p{
 	margin: 0px;
-	font-size: 1.5em;
+	font-size: 1.4em;
+}
+
+#Confirm-List{
+	width: 300px;
+	height: 300px;
+	margin: auto;
+}
+
+#Confirm-List p{
+	font-size: 1.4em;
+}
+
+#Confirm-Button{
+	width: 100px;
+	height: 80px;
 }
