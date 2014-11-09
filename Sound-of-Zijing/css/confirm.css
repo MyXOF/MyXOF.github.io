@@ -32,7 +32,7 @@ body{
 
 #Confirm-List{
 	width: 300px;
-	height: 300px;
+	height: auto;
 	margin: auto;
 }
 
@@ -82,4 +82,21 @@ body{
 	font-size: 1.1em;
 	text-align: center;
 
+}
+
+pre {
+	width: 200px;
+    display: block;
+    padding: 9.5px;
+    margin: auto;
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: auto;
 }

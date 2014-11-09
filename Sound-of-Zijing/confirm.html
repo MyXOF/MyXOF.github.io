@@ -19,9 +19,41 @@
   <p>密码 <input type="password"  id = "Password" class = "input-selfinformation"/></p>
   <input type="submit" value="认证" id = "Confirm-Button"/>
 </form>
+<pre id="results" style="margin-top: 15px">请填写信息进行测试。</pre>
 <div id = "Confirm-Inc">
 	<p>清华大学/校团委<p>
 	<p>@2014</p>
 </div>
+<script>
+        var key = new RSAKeyPair("10001", "", "89323ab0fba8422ba79b2ef4fb4948ee5158f927f63daebd35c7669fc1af6501ceed5fd13ac1d236d144d39808eb8da53aa0af26b17befd1abd6cfb1dcfba937438e4e95cd061e2ba372d422edbb72979f4ccd32f75503ad70769e299a4143a428380a2bd43c30b0c37fda51d6ee7adbfec1a9d0ad1891e1ae292d8fb992821b");
+        $("#Confirm-List").on('submit', function(e) {
+            e.preventDefault();
+            $("#results").text("正在认证，请稍候……");
+            $.ajax({
+                url: "/v1/time",
+                type: "GET",
+                success: function(time) {
+                    $.ajax({
+                        url: "/v1",
+                        type: "POST",
+                        data: {
+                            secret: encryptedString(key, time + "|" + $("#username").val() + "|" + $("#password").val())
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            $("#results").text(JSON.stringify(data, null, 4));
+                        },
+                        error: function() {
+                            $('#results').text("认证服务出错，请重试……")
+                        }
+                    })
+                },
+                error: function() {
+                    $('#results').text("获取时间失败，请重试……")
+                }
+            });
+            return false;
+        })
+    </script>
 </body>  
 </html>
