@@ -16,9 +16,14 @@
 
 
 #Confirm-Title{
-	
+	margin-top: 15px;
 	width: 100%;
-	height: 50;
+	height: 40px;
 	text-align: center;
-	font-size: 1.6em;
+	border-bottom: 1px solid #424242;
+}
+
+#Confirm-Title p{
+	margin: 0px;
+	font-size: 1.5em;
 }
