@@ -3,6 +3,7 @@
 	height: 150px;
 	overflow: hidden;
 	border-radius: 10px;
+	position: relative;
 }
 
 #ImgTop img{
