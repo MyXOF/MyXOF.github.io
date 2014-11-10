@@ -47,7 +47,12 @@ body{
 	
 }
 
-
+#Ticket-Box{
+	margin: auto;
+	width: 200px;
+	background-color: red;
+	height: 70px;
+}
 
 
 #Activity-Inc{
