@@ -50,20 +50,34 @@ body{
 #Ticket-Box{
 	margin: auto;
 	width: 200px;
-	text-align: center;
-	height: 70px;
-	font-size: 1.6em;
+	
+	height: 50px;
+	
 }
 
 #Ticket-Number{
-	margin: auto;
+	position: relative;
+	float: left;
+	left: 50px;
 	width: 100px;
+	height: 100%;
 	border-radius: 5px;
-	height: 70px;
+	text-align: center;
+	font-size: 45px;
 	color: red;
-	border: 1px solid #424242;
+	background-color: rgba(111,111,111,0.5);
+	
 
 
+}
+
+#Ticket-Unit{
+	width: 50px;
+	position: relative;
+	float: left;
+	left: 55px;
+	top: 3px;
+	font-size: 30px;
 }
 
 
