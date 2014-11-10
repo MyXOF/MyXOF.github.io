@@ -20,7 +20,28 @@ body{
 	width: 100%;
 	height: 40px;
 	text-align: center;
-	
+
 	font-size: 1.4em;
+}
+
+.General-Title{
+	margin-left: 0px;
+	font-size: 1.5em;
+	margin-bottom: 5px;
+
+}
+
+.General-Box{
+	margin:auto;
+	height: 50px;
+	border-radius: 5px;
+	background-color: #999999;
+	font-size: 1.4em;
+	margin-bottom: 5px;
+}
+
+.General-Box p{
+	padding-top: 10px;
+	
 }
 
