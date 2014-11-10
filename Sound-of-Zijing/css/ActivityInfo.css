@@ -27,7 +27,7 @@ body{
 .General-Title{
 	margin-left: 0px;
 	font-size: 1.5em;
-	margin-bottom: 5px;
+	margin-bottom: 1px;
 
 }
 
@@ -37,11 +37,12 @@ body{
 	border-radius: 5px;
 	background-color: #999999;
 	font-size: 1.4em;
-	margin-bottom: 5px;
+	margin-bottom: 1px;
 }
 
 .General-Box p{
 	padding-top: 10px;
+	margin: 0px;
 	
 }
 
