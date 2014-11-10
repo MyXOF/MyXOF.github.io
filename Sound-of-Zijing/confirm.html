@@ -43,7 +43,7 @@
                         data: {
                             secret: encryptedString(key, time + "|" + $("#Username").val() + "|" + $("#Password").val())
                         },
-                        dataType: "json",
+                        dataType: "jsonp",
                         success: function(data) {
                         	
                         	if(data.code == 0){
