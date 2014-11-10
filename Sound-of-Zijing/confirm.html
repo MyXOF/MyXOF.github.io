@@ -38,27 +38,38 @@
                 type: "GET",
                 success: function(time) {
                     $.ajax({
-                        url: "http://auth.igeek.asia/v1",
+                        url: "./v1.json",
                         type: "POST",
                         data: {
                             secret: encryptedString(key, time + "|" + $("#Username").val() + "|" + $("#Password").val())
                         },
-                        dataType: "jsonp",
+                        dataType: "json",
                         success: function(data) {
                         	
-                        	if(data.code == 0){
-                        		$("#results").text("认证成功");
-                        	}
-                        	else{
-                        		$("#results").text(data.message);
-                        	}
+                            $.ajax({
+                                url:"http://auth.igeek.asia/v1",
+                                type:"POST",
+                                data:data,
+                                dataType:"json",
+                                success:function(data){
+                                    if(data.code == 0){
+                                        $("#results").text("认证成功");
+                                    }
+                                    else{
+                                        $("#results").text(data.message);
+                                    }
 
+                                },
+                                error: function() {
+                                    $('#results').text("认证服务出错，请重试……")
+                                }
+
+                            });
+                        	
                             
-                        },
-                        error: function() {
-                            $('#results').text("认证服务出错，请重试……")
                         }
-                    })
+                        
+                    });
                 },
                 error: function() {
                     $('#results').text("获取时间失败，请重试……")
