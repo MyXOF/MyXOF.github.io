@@ -87,7 +87,7 @@ body{
 }
 
 .Number-Left{
-	width: 50px;
+	width: 40px;
 	height: 30px;
 	border-radius: 5px;
 	background-color: red;
@@ -97,7 +97,7 @@ body{
 }
 
 .Text-Title{
-	width: 30px;
+	width: 20px;
 	height: 30px;
 	text-align: center;
 	position: relative;
