@@ -98,10 +98,12 @@ body{
 
 .Text-Title{
 	width: 20px;
-	height: 30px;
+	height: 20px;
+	margin-top: 3px;
 	text-align: center;
 	position: relative;
 	float: left;
+	font-size: 1em;
 }
 
 
