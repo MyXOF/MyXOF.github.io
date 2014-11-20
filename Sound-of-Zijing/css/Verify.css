@@ -1,0 +1,173 @@
+
+body{
+	background-color: #DCE7E7;
+	font-family:"微软雅黑","黑体","宋体";
+    line-height: 1.428571429;
+    position: relative;   /*重要！保证footer是相对于wapper位置绝对*/  
+    height: auto;          /* 保证页面能撑开浏览器高度时显示正常*/  
+    min-height: 100%; /* IE6不支持，IE6要单独配置*/ 
+    margin: 0px;
+}
+
+
+#ImgTop{
+	width: 100%;
+	
+	overflow: hidden;
+	border-radius: 10px;
+	
+}
+
+#ImgTop img{
+	width: 100%;
+	
+	
+}
+
+.Verify-Img{
+	width: 128px;
+	height: 128px;
+	margin: auto;
+	display: none;
+	margin-top: 20px;
+	margin-bottom:10px;
+}
+
+#Confirm-Title{
+	margin-top: 15px;
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	border-bottom: 1px solid #424242;
+}
+
+#Confirm-Title p{
+	margin: 0px;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+#Confirm-List{
+	width: 300px;
+	height: auto;
+	margin: auto;
+}
+
+#Confirm-List p{
+	font-size: 1.2em;
+	
+	color: #b94a48;
+	font-weight: bold;
+	margin-left: 2%;
+}
+
+#Confirm-List p lable{
+	margin-left: 2%;
+	margin-right: 3%;
+	margin-bottom: 2%;
+	display: inline-block;
+}
+
+.input-selfinformation{
+	line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+	width: 50%;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    border-color:#b94a48;
+    width: 75%;
+    height: 30px;
+    display: block;
+    float: right;
+}
+
+.input-selfinformation:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+}
+
+#Button-Line{
+	width: 100%;
+	margin-left:75px;
+}
+
+#Confirm-Button{
+	width: 100px;
+	margin-left: 10px;
+	
+}
+
+#Confirm-Inc{
+	width: 100%;
+	height: 50px;
+	position: relative;
+	bottom: 0px;
+	
+	border-top: 1px solid #424242;
+}
+
+#Confirm-Inc p{
+	margin: 5px;
+	font-size: 1.1em;
+	text-align: center;
+
+}
+
+pre {
+	width: 200px;
+    display: block;
+    padding: 9.5px;
+    margin: auto;
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: auto;
+}
+
+#footer {
+	clear: both;
+    display: block;
+    position: relative;
+    top:-65px;
+    height: 60px; /* a little smaller than 50 to avoid scroll*/    
+    text-align: center;    
+}
+
+#main-content{  
+   
+   width: 100%;
+   position: relative;
+   float: left;
+   
+}  
+
+.Verify-Img{
+	width: 64px;
+	height: 64px;
+	margin: auto;
+	display: none;
+	margin-top: 20px;
+	margin-bottom:10px;
+}
+
+#Cancel-Button{
+
+	width: 100px;
+	margin: auto;
+	display: none;
+}

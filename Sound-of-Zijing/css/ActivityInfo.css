@@ -11,24 +11,20 @@ body{
 
 #ImgTop img{
 	width: 100%;
-	height: 100%;
-	
 }
 
 #Activity-Title{
-	margin-top: 15px;
+	margin-top: 5px;
 	width: 100%;
-	height: 40px;
+	height: 25px;
 	text-align: center;
-
 	font-size: 1.4em;
 }
 
 
 
-
 #Time-Left{
-	width: 250px;
+	width: 300px;
 	height: 30px;
 	text-align: center;
 	margin: auto;
@@ -38,20 +34,24 @@ body{
 	width: 40px;
 	height: 30px;
 	border-radius: 5px;
-	background-color: red;
+	background-color: rgb(68,68,68);
 	position: relative;
 	float: left;
+	text-align: center;
 	font-size: 1.5em;
+	color: white;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .Text-Title{
 	width: 20px;
 	height: 20px;
-	margin-top: 3px;
+	
 	text-align: center;
 	position: relative;
 	float: left;
-	font-size: 1em;
+	font-size: 1.4em;
 }
 
 
@@ -59,7 +59,7 @@ body{
 	margin: auto;
 	width: 200px;
 	
-	height: 50px;
+	height: 40px;
 	
 }
 
@@ -67,25 +67,27 @@ body{
 	position: relative;
 	float: left;
 	left: 50px;
-	width: 100px;
-	height: 100%;
+	width: 70px;
+	height: 35px;
 	border-radius: 5px;
 	text-align: center;
-	font-size: 45px;
+	font-size: 1.8em;
 	color: red;
-	background-color: rgba(111,111,111,0.5);
 	
-
+	 -moz-box-shadow:0px 0px 10px #333333;
+    -webkit-box-shadow:0px 0px 10px #333333;
+    box-shadow:0px 0px 10px #333333;
 
 }
 
 #Ticket-Unit{
-	width: 50px;
+	width: 40px;
+	height: 40px;
 	position: relative;
 	float: left;
 	left: 55px;
-	top: 5px;
-	font-size: 30px;
+	
+	font-size: 1.5em;
 }
 
 
@@ -98,7 +100,7 @@ body{
 
 .General-Title{
 	margin-left: 0px;
-	font-size: 1.3em;
+	font-size: 0.9em;
 	margin-bottom: 3px;
 	margin-top: 7px;
 
@@ -106,16 +108,16 @@ body{
 
 .General-Box{
 	margin:auto;
-	height: 50px;
+	height: 25px;
 	border-radius: 5px;
-	background-color: #999999;
-	font-size: 1.2em;
+	background-color: rgb(200,200,200);
+	font-size: 0.9em;
 	margin-bottom: 4px;
 }
 
 .General-Box p{
-	padding-top: 10px;
-	margin: 0px;
+	padding-top: 3px;
+	margin-left: 10px;
 	
 }
 
