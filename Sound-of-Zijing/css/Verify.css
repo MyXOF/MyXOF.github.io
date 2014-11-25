@@ -164,11 +164,6 @@ body{
 	color: black;
 }
 
-#ForeBlindText{
-	margin-top: 1px;
-	margin-bottom: 0px;
-}
-
 #Confirm-Button{
 	
 	width: 70%;
@@ -231,6 +226,11 @@ body{
 	float: left;
 	margin-left: 23%;	
 
+}
+
+#ForeBlindText{
+	margin-top: 2px;
+	margin-bottom: 0px;
 }
 
 #Button-Line span{
