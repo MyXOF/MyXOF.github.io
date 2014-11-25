@@ -164,12 +164,13 @@ body{
 	color: black;
 }
 
+
 #Confirm-Button{
 	
 	width: 70%;
 	height: 30px;
 	margin-left: 15%;
-	margin-top: 5%;
+	margin-top: 10%;
 	margin-bottom: 5%;
 	position: relative;
 
@@ -229,7 +230,10 @@ body{
 }
 
 #ForeBlindText{
-	margin-top: 2px;
+	position: relative;
+	float: left;
+	width: 100px;
+	margin-top:2px;
 	margin-bottom: 0px;
 }
 
