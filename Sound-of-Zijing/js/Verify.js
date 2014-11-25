@@ -29,13 +29,45 @@ function SetFooter(){
 		js_main_content.css("height",height);
 	}
 	$("body").css("height",height);
-
 	
+}
+
+function SetComfirmList(){
+	var width =  document.body.scrollWidth;	
+	var js_comfirmlist = $("#Confirm-List");
+	if(width * 0.8 > 400){
+
+		
+		js_comfirmlist.css("width",400);
+	}
+	else if(width < 250){
+		js_comfirmlist.css("width",width*0.9);
+		js_comfirmlist.css("margin","auto");
+		$("#Username").css("height","20px");
+		$("#Password").css("height","20px");
+	}
+
+}
+
+function SetForceBlindText(){
+	
+	var js_ForceBlindText = $("#ForeBlindText");
+
+	if(js_ForceBlindText.hasClass("BlindDisActive")){
+		js_ForceBlindText.attr("class","BlindActive");
+		js_ForceBlindText.css("color","rgb(200,0,0)");
+	}
+	else{
+		js_ForceBlindText.attr("class","BlindDisActive");
+		js_ForceBlindText.css("color","black");
+	}
+
+                
 }
 
 $(document).ready(function(){
 	SetFooter();
-	
+	SetComfirmList();
 	
 
 	//alert(height);
@@ -45,7 +77,18 @@ $(document).ready(function(){
 		$("#Confirm-List").css("display","block");
 		$("#Username").val("");
 		$("#Password").val("");
+
+		
+		//$("#Forcebind").removeAttr("checked");
+		//$("#ForeBlindText").attr("class","BlindDisActive");
+		//$("#ForeBlindText").css("color","black");
+
 		$("#results").text("请填写信息进行认证。");
+
+	});
+
+	$("#Forcebind").mousedown(function(){
+		SetForceBlindText();
 	});
 });
 

@@ -12,33 +12,58 @@
 <script src="./js/Verify.js"></script>
 <title>用户验证</title>  
 </head>  
-<body>  
+<body>
 <div id = "main-content">
     <div id = "ImgTop">
-    	<img src="./img/newlogo.jpg">
+        <img src="./img/newlogo.jpg">
     </div>
-    <div id = "Confirm-Title">
-    	<p>用户验证</p>
+    <div id = "ConfirmBox">
+        <div id = "Confirm-Title">
+        <p>用户验证</p>
+        </div>
+    
+        <form action="" method="get" id = "Confirm-List">
+            <span>           
+                <input type="text"  id = "Username" class = "input-selfinformation" placeholder="请输入您的学号"/>
+                <lable>学号</lable>
+                <div class = "ClearFix"></div>
+            </span>
+            <span>
+                
+                <input type="password" id = "Password" class = "input-selfinformation" placeholder="使用info密码进行登录"/>
+                <lable>密码</lable>
+                <div class = "ClearFix"></div>
+
+            </span>
+            <div id = "Button-Line">
+                <input id = "Forcebind" type="checkbox" value = "Forcebind" name="Forcebind"/><span id = "ForeBlindText" class = "BlindDisActive">强制绑定</span>
+                <input type="submit" value="认 证" id = "Confirm-Button"/>
+
+                <div class = "ClearFix"></div>
+            </div>
+            <pre id="results" style="margin-top: 15px">请填写信息进行认证。</pre>
+            <div class = "ClearFix"></div>
+        </form>
+
+        
+        <div class = "ClearFix"></div>
     </div>
-    <form action="" method="get" id = "Confirm-List">
-      <p><lable>学号</lable> <input type="text"  id = "Username" class = "input-selfinformation" placeholder="请输入您的学号"/></p>
-      <p><lable>密码</lable><input type="password"  id = "Password" class = "input-selfinformation" placeholder="使用info密码进行登录"/></p>
-      <div id = "Button-Line">
-        <input id = "Forcebind" type="checkbox" value = "Forcebind" name="Forcebind">强制绑定
-        <input type="submit" value="认证" id = "Confirm-Button"/>
-      </div>
-    </form>
+    
+
+
     <img class = "Verify-Img" id = "VerifyOKIMG" src="./img/VerifySuccessImg.png">
 
     <img class = "Verify-Img" id = "VerifyNOIMG" src="./img/VerifyFailImg.png">
     <input id = "Cancel-Button" value = "返回" type = "button"/>
 
-    <pre id="results" style="margin-top: 15px">请填写信息进行认证。</pre>
+    
 </div>
 <footer id="footer">
     <hr>
-    共青团清华大学委员会<br>
-    © 2014
+    <p>共青团清华大学委员会</p>
+    <p> © 2014</p>
+  
+   
 </footer>
 
 <script>
@@ -81,17 +106,17 @@
                         dataType: "json",
                         success:function(data){
                                     if(data.code == 0){
-                                        VerifySuccess();
+                                        //VerifySuccess();
                                         $("#results").text("认证成功");
                                     }
                                     else{
-                                        VerifyFail();
+                                        //VerifyFail();
                                         $("#results").text(data.message);
                                     }
 
                                 },
                         error: function(){
-                                VerifyFail();
+                                //VerifyFail();
                                 $('#results').text("认证服务出错，请重试……");
                         }                        	
                             
@@ -100,7 +125,7 @@
                     });
                 },
                 error: function() {
-                    VerifyFail();
+                    //VerifyFail();
                     $('#results').text("获取时间失败，请重试……")
                 }
             });
