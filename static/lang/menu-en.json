@@ -1,10 +1,12 @@
 {
     "lang":[
         {
+            "navigation":"Navigation",
             "homepage":"Homepage",
             "resume":"Resume",
             "blog":"Blog",
-            "about":"About"
+            "about":"About",
+            "language":"Language"
         }
     ]
 }
