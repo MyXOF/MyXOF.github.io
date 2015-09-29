@@ -1,76 +1,117 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 7 ]>
+<html class="ie ie7 lte9 lte8 lte7" lang="en-US"><![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 lte9 lte8" lang="en-US">    <![endif]-->
+<!--[if IE 9]>
+<html class="ie ie9 lte9" lang="en-US"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="noIE" lang="en-US">
+<!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Welcome To MyXOF</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<style type="text/css">
+    <title>MYXOF</title>
 
-	body {font: normal 100% Helvetica, Arial, sans-serif;margin: 0 auto;}
+    <!-- meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no"/>
 
-	div#clearfix {clear:both; height:0;}
+    <!-- google fonts -->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans'>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alegreya+Sans:regular,italic,bold,bolditalic"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nixie+One:regular,italic,bold,bolditalic"/>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alegreya+SC:regular,italic,bold,bolditalic"/>
 
-	div#background{width:100%;border: 0px;padding: 0px;margin: 0px;}
+    <!-- css -->
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/index.css" media="screen"/>
+    <link rel="stylesheet" href="static/css/hexaflip.css">
 
-	div#LabelContainer{width:15%;height: 50%;background-color: #424242;opacity: 0.8;border: 0px;padding: 0px;margin: 0px;}
-		div#LOGO{width:100%;height: 30%;background: #000000;opacity: 1}
-		div#SelfIntroduction{width: 100%;height: 10%;background-color: #424242;border: 0px;padding: 0px;margin: 0px;}
-		div#Blog{width: 100%;height: 10%;background-color: #424242;border: 0px;padding: 0px;margin: 0px;}
-		div#Presentation{width: 100%;height: 10%;background-color: #424242;border: 0px;padding: 0px;margin: 0px;}
-		div#About{width: 100%;height: 10%;background-color: #424242;border: 0px;padding: 0px;margin: 0px;}
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5.js"></script>
+    <script src="lib/js/respond.js"></script>
+    <![endif]-->
 
-
-	h3{line-height:50px;color:#fff;margin:0;z-index:1;}
-	h2{line-height:55px;color:#fff;margin:0;z-index:1;}
-	p{line-height: 20px;color: #fff;margin: 0;z-index: 1;}
-
-	div#Blank{width: 15%;height:300px;border: 0px;padding: 0px;margin: 0px;}
-	div#footer{width: 100%;height: 10px;background-color: #fff;}
-
-	a.one:link{color: #fff;text-decoration: none;}
-	a.one:visited{color: #fff;text-decoration: none;}
-	a.one:hover{color: #ffcc00;text-decoration: underline;}
-
-	a.two:link{color: #fff;text-decoration: none;}
-	a.two:visited{color: #fff;text-decoration: none;}
-	a.two:hover{color: #B22222;text-decoration: underline;}
-
-	a.three:link{color: #fff;text-decoration: none;}
-	a.three:visited{color: #fff;text-decoration: none;}
-	a.three:hover{color: #7CFC00;text-decoration: underline;}
-
-	a.four:link{color: #fff;text-decoration: none}
-	a.four:visited{color: #fff;text-decoration: none;}
-	a.four:hover{color: #FF00FF;text-decoration: underline;}
-
-	a.five:link{color: #fff;text-decoration: none}
-	a.five:visited{color: #fff;text-decoration: none;}
-	a.five:hover{color: #00FF7F;text-decoration: underline;}
-	</style>
+    <!--[if IE 8]>
+    <script src="lib/js/selectivizr.js"></script>
+    <![endif]-->
 </head>
+
 <body>
-	<div id = "background" style="position:absolute; width: 100%; height: 100%; z-index: -2;" >
-		<img src = "rain.jpg" alt="Rain" width="100%" height="100%" />
-	</div>
+<div id="drawer-right">
+    <div class="cross text-right">
+        <a class="toggleDrawer" href="#"><i class="fa fa-times-circle fa-2x" id="exit-cross"></i></a>
+    </div>
+    <h2 class="lang-content" id="navigation">导航</h2>
+    <nav>
+        <ul class="nav nav-pills nav-stacked">
+            <li>
+                <a href="#"><i class="fa fa-home"></i>&nbsp;&nbsp;<span class="lang-content" id="homepage"></span></a>
+            </li>
+            <li>
+                <a href="./webpage/resume.html"><i class="fa fa-info"></i>&nbsp;&nbsp;<span class="lang-content" id="resume"></span></a>
+            </li>
+            <li>
+                <a href="./webpage/blog.html"><i class="fa fa-file"></i>&nbsp;&nbsp;<span class="lang-content" id="blog"></span></a>
+            </li>
+            <li>
+                <a href="./webpage/about.html"><i class="fa fa-bookmark"></i>&nbsp;&nbsp;<span class="lang-content" id="about"></span></a>
+            </li>
+            <li>
+                <a href="" id="lang-option"><i class="fa fa-language"></i>&nbsp;&nbsp;<span class="lang-content" id="language"></span></a>
+            </li>
+        </ul>
+        <ul class="lang-option">
+            <li id="zh-lang"><a>中文</a></li>
+            <li id="en-lang"><a>English</a></li>
+        </ul>
 
-	<div id = "LabelContainer" style = "position:relative;z-index = -1">
-		<div = id = "LOGO" align = "center">
-			<img src="XOF.png" alt="XOF" vertical-align="middle" style="z-index = 1;width:100%; height:30%;" />
-		</div>
+    </nav>
+    <footer class="footer">
+        <p>Create by <span>Dark Templar</span></p>
+    </footer>
 
-		<div id = "SelfIntroduction" style = "width:100%;"><h3 align = "center"><a class = "one" href="SelfIntroduction.html">SelfIntroduction</a></h3>
-		</div>
-		<div id = "Blog" style = "width:100%;"><h3 align = "center" ><a class = "two" href="Blog.html">Blog</a></h3>
-		</div>
-		<div id = "Presentation" style = "width:100%;"><h3 align = "center"><a class = "three" href="Presentation.html">Presentation</a></h3>
-		</div>
-		<div id = "About" style = "width:100%;"><h3 align = "center"><a class = "five" href="About.html">About</a></h3>
-		</div>
+</div>
+<!-- #drawer-right -->
 
-	</div>
-	<div id = "Blank" style = "width:100%;height = 100%;"><p></p></div>
+<div id="wrapper">
 
-	<!--<div id = "footer" style="position = absolute;width:100%;height:100%;z-index:-2;">
-		<p align = "center">CopyRight From XOF.All Right Reserved</p></div>-->
+<div id="header" class="content-block">
+
+    <section class="top clearfix">
+        <div class="pull-left" id="logo-name">
+            <h1><a class="logo">XOF</a></h1>
+        </div>
+        <div class="pull-right">
+            <a class="toggleDrawer" href="#"><i class="fa fa-bars fa-2x" id="menu-list"></i></a>
+        </div>
+    </section>
+    <section class="center">
+        <div id="hexaflip" class="logo-cube"></div>
+        <div class="slogan lang-content light" id="hello-light"></div>
+        <div class="secondary-slogan lang-content light" id="welcome-light"></div>
+        <div class="slogan lang-content dark" id="hello-dark"></div>
+        <div class="secondary-slogan lang-content dark" id="welcome-dark"></div>
+    </section>
+
+</div>
+<!-- header -->
+
+</div>
+<!--/#wrapper-->
+
+
+<script src="lib/js/jquery-2.1.3.min.js"></script>
+<script src="lib/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="lib/js/bootstrap.min.js"></script>
+<script src="lib/js/jquery.actual.min.js"></script>
+<script src="lib/js/jquery.scrollTo.min.js"></script>
+<script src="static/js/script.js"></script>
+<script src="static/js/language.js"></script>
+<script src="static/js/hexaflip.js"></script>
+<script src="static/js/logo_cube.js"></script>
 </body>
 </html>

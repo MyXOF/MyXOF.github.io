@@ -1,4 +1,0 @@
-SpicyPot
-========
-
-Weixin App Development
