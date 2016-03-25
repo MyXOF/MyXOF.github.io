@@ -2,16 +2,14 @@
  * Created by xuyi on 9/29/15.
  */
 
-var LANG_URL = "http://myxof.github.io/static/lang/";
 
-var langDefault = "zh";
-
-var lang_menu = false;
 
 jQuery(document).ready(function(){
-    langDefault = "zh";
-    setLanguage(langDefault);
+    var LANG_URL = "http://myxof.github.io/static/lang/";
+    var langDefault = "zh";
+    var lang_menu = false;
 
+    setLanguage(langDefault);
 
     jQuery("#menu-list").bind("click",function(){
         hideLanguageOption();

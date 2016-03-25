@@ -2,9 +2,6 @@
  * Created by xuyi on 9/25/15.
  */
 
-
-
-
 jQuery(document).ready(function () {
     var hexa,
         images = [
