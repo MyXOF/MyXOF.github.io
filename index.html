@@ -9,7 +9,7 @@
 <html class="noIE" lang="en-US">
 <!--<![endif]-->
 <head>
-    <title>MYXOF</title>
+    <title>Homepage</title>
 
     <!-- meta -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,8 +26,15 @@
     <!-- css -->
     <link rel="stylesheet" href="lib/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/css/font-awesome.min.css">
-    <link rel="stylesheet" href="static/css/index.css" media="screen"/>
+    <link rel="stylesheet" href="static/css/index.css"/>
+    <link rel="stylesheet" href="static/css/common.css" media="screen">
     <link rel="stylesheet" href="static/css/hexaflip.css">
+
+    <script src="lib/js/jquery-2.1.3.min.js"></script>
+    <script src="lib/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="lib/js/bootstrap.min.js"></script>
+    <script src="lib/js/jquery.actual.min.js"></script>
+    <script src="lib/js/jquery.scrollTo.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -40,28 +47,36 @@
     <![endif]-->
 </head>
 
-<body>
+<body id="index">
 <div id="drawer-right">
     <div class="cross text-right">
         <a class="toggleDrawer" href="#"><i class="fa fa-times-circle fa-2x" id="exit-cross"></i></a>
     </div>
-    <h2 class="lang-content" id="navigation">导航</h2>
+    <h2 class="lang-menu-content" id="navigation">导航</h2>
     <nav>
         <ul class="nav nav-pills nav-stacked">
             <li>
-                <a href="#"><i class="fa fa-home"></i>&nbsp;&nbsp;<span class="lang-content" id="homepage"></span></a>
+                <a href="#">
+                    <i class="fa fa-home"></i>&nbsp;&nbsp;<span class="lang-menu-content" id="homepage"></span>
+                </a>
             </li>
             <li>
-                <a href="./webpage/resume.html"><i class="fa fa-info"></i>&nbsp;&nbsp;<span class="lang-content" id="resume"></span></a>
+                <a href="./webpage/resume.html">
+                    <i class="fa fa-info"></i>&nbsp;&nbsp;<span class="lang-menu-content" id="resume"></span>
+                </a>
             </li>
             <li>
-                <a href="./webpage/blog.html"><i class="fa fa-file"></i>&nbsp;&nbsp;<span class="lang-content" id="blog"></span></a>
+                <a href="./webpage/blog.html">
+                    <i class="fa fa-file"></i>&nbsp;&nbsp;<span class="lang-menu-content" id="blog"></span>
+                </a>
             </li>
             <li>
-                <a href="./webpage/about.html"><i class="fa fa-bookmark"></i>&nbsp;&nbsp;<span class="lang-content" id="about"></span></a>
+                <a href="./webpage/about.html">
+                    <i class="fa fa-bookmark"></i>&nbsp;&nbsp;<span class="lang-menu-content" id="about"></span>
+                </a>
             </li>
             <li>
-                <a href="" id="lang-option"><i class="fa fa-language"></i>&nbsp;&nbsp;<span class="lang-content" id="language"></span></a>
+                <a href="#" id="lang-option"><i class="fa fa-language"></i>&nbsp;&nbsp;<span class="lang-menu-content" id="language"></span></a>
             </li>
         </ul>
         <ul class="lang-option">
@@ -91,10 +106,10 @@
     </section>
     <section class="center">
         <div id="hexaflip" class="logo-cube"></div>
-        <div class="slogan lang-content light" id="hello-light"></div>
-        <div class="secondary-slogan lang-content light" id="welcome-light"></div>
-        <div class="slogan lang-content dark" id="hello-dark"></div>
-        <div class="secondary-slogan lang-content dark" id="welcome-dark"></div>
+        <div class="slogan lang-index-content light" id="hello-light"></div>
+        <div class="secondary-slogan lang-index-content light" id="welcome-light"></div>
+        <div class="slogan lang-index-content dark" id="hello-dark"></div>
+        <div class="secondary-slogan lang-index-content dark" id="welcome-dark"></div>
     </section>
 
 </div>
@@ -104,14 +119,11 @@
 <!--/#wrapper-->
 
 
-<script src="lib/js/jquery-2.1.3.min.js"></script>
-<script src="lib/js/jquery-migrate-1.2.1.min.js"></script>
-<script src="lib/js/bootstrap.min.js"></script>
-<script src="lib/js/jquery.actual.min.js"></script>
-<script src="lib/js/jquery.scrollTo.min.js"></script>
-<script src="static/js/script.js"></script>
-<script src="static/js/language.js"></script>
+
+<script src="static/js/common.js"></script>
+<script src="static/js/index.js"></script>
+<script src="static/js/menu.js"></script>
 <script src="static/js/hexaflip.js"></script>
-<script src="static/js/logo_cube.js"></script>
+<script src="static/js/logoCube.js"></script>
 </body>
 </html>
