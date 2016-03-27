@@ -17,8 +17,16 @@ body {
     transition: all .5s;
 }
 
-#logo-name a:hover{
-    color: orange;
+#drawer-right {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-right: -300px;
+    background-color: rgba(39,61,82,0.4);
+    width: 300px;
+    padding: 20px;
+    z-index: 999;
 }
 
 .light{
@@ -56,3 +64,16 @@ body {
     filter: drop-shadow(30px 30px 23px rgba(0,0,0,0.3));
 }
 
+
+.block-body {
+    margin-top: 60px;
+}
+
+.btn{
+    border-radius: 0;
+}
+
+.btn-o:hover {
+    background: #3A4F52;
+    color: white;
+}

@@ -13,8 +13,6 @@ html {
     overflow-y: scroll;
 }
 
-p {margin: 0 0 20px 0;	}
-
 img {max-width: 100%;}
 
 a{
@@ -40,15 +38,24 @@ h1, h2, h3, h4, h5, h6{
     font-family: 'Alegreya Sans';
 }
 
-.btn{border-radius: 0;}
+.content-block{
+    background:transparent no-repeat center center fixed;
+    -webkit-background-size:100%;
+    -moz-background-size:100%;
+    -o-background-size:100%;
+    background-size:100%;
+    background-size:cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    overflow:hidden;
+}
+
 .btn-o {
     border: 1px solid #3A4F52;
     color: #3A4F52;
 }
-.btn-o:hover {
-    background: #3A4F52;
-    color: white;
-}
+
 .btn.btn-o-white {
     border: 1px solid white;
     color: white;
@@ -57,6 +64,10 @@ h1, h2, h3, h4, h5, h6{
 .btn.btn-o-white:hover {
     background: white;
     color: #6a6a6a;
+}
+
+#logo-name a:hover{
+    color: orange;
 }
 
 
@@ -69,9 +80,6 @@ h1, h2, h3, h4, h5, h6{
     text-align: center;
     padding: 0 !important;
 }
-
-
-
 
 #header .top h1{
     margin-bottom: 0;
@@ -101,17 +109,6 @@ h1, h2, h3, h4, h5, h6{
     opacity: 1;
 }
 
-#drawer-right {
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin-right: -300px;
-    background-color: rgba(39,61,82,0.4);
-    width: 300px;
-    padding: 20px;
-    z-index: 999;
-}
 
 #drawer-right h1, #drawer-right h2{color: white;}
 
@@ -147,24 +144,16 @@ h1, h2, h3, h4, h5, h6{
     font-size: 1.3em;
 }
 
+/*////////////////////////////////////////////////////////////////////////
+//  Footer
+///////////////////////////////////////////////////////////////////////*/
 
-.content-block{
-    background:transparent no-repeat center center fixed;
-    -webkit-background-size:100%;
-    -moz-background-size:100%;
-    -o-background-size:100%;
-    background-size:100%;
-    background-size:cover;
-    -webkit-background-size:cover;
-    -moz-background-size:cover;
-    -o-background-size:cover;
-    overflow:hidden;
-    padding: 60px 0;
-}
+#footer{ background: #2B3E51; color: white;}
 
-.block-body {
-    margin-top: 60px;
-}
+
+/*////////////////////////////////////////////////////////////////////////
+//  Responsive styles
+///////////////////////////////////////////////////////////////////////*/
 
 @media (max-width: 660px) {
     #drawer-right {

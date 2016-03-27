@@ -1,3 +1,12 @@
+body {
+    color: #6a6a6a;
+    background: #f1f0f0;
+}
+
+.lang-resume-page-content{
+    font-family:"Microsoft YaHei","Arial", "黑体","宋体",sans-serif;
+}
+
 #header .top {
     position:fixed;
     top:0;
@@ -10,7 +19,7 @@
     -moz-transition: all .5s;
     -webkit-transition: all .5s;
     transition: all .5s;
-    background: rgb(39,61,82);
+    background: rgba(39,61,82,0.9);
 }
 
 #header .top.solid {
@@ -19,19 +28,34 @@
     padding-bottom: 15px;
 }
 
-.content-block{
-    background:transparent no-repeat center center fixed;
-    -webkit-background-size:100%;
-    -moz-background-size:100%;
-    -o-background-size:100%;
-    background-size:100%;
-    background-size:cover;
-    -webkit-background-size:cover;
-    -moz-background-size:cover;
-    -o-background-size:cover;
-    overflow:hidden;
-    padding: 100px 0;
+#drawer-right {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-right: -300px;
+    background-color: rgba(39,61,82,0.9);
+    width: 300px;
+    padding: 20px;
+    z-index: 999;
 }
+
+.btn-o:hover {
+    background: #3A4F52;
+    color: white;
+}
+
+#portfolio{
+    padding-top: 50px;
+}
+
+#footer{
+    padding: 20px 0px;
+}
+
+/*////////////////////////////////////////////////////////////////////////
+//  Recent works
+///////////////////////////////////////////////////////////////////////*/
 
 .recent-work {
     width: 100%;
@@ -77,7 +101,21 @@
     opacity: 1;
 }
 
+/*////////////////////////////////////////////////////////////////////////
+//   Testimonials
+///////////////////////////////////////////////////////////////////////*/
 
+#testimonials{
+    text-align: center;
+    padding-top: 100px;
+}
+#testimonials .testimonial > img {
+    border-radius: 100%;
+    margin-bottom: 15px;
+}
+#testimonials .testimonial {
+    padding: 25px;
+}
 
 
 @media (max-width: 767px){
