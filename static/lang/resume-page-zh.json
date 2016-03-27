@@ -1,11 +1,17 @@
 {
-  "lang":[
-      {
-          "name":"徐毅",
-          "job":"软件工程师",
-          "see-all":"查看全部",
-          "my-latest-work":"我最新的作品",
-          "my-recent-work":"看一看我最近的工作"
-      }
+  "lang": [
+	{
+	  "name": "徐毅",
+	  "job": "学生, 软件工程师",
+	  "education-expr": "教育背景",
+	  "internship-expr":"实习经历",
+	  "work-expr":"工作经历",
+	  "project-expr":"项目经验",
+	  "skills-expr":"专业技能",
+	  "about-expr":"关于我",
+	  "see-all": "查看全部",
+	  "my-latest-work": "我最新的作品",
+	  "my-recent-work": "看一看我最近的工作"
+	}
   ]
 }
