@@ -1,17 +1,18 @@
 {
   "lang": [
-	{
-	  "name": "Xu Yi",
-	  "job": "Student, Software Engineer",
-	  "education-expr": "Education",
-	  "internship-expr":"Internship",
-	  "work-expr":"Work",
-	  "project-expr":"Project",
-	  "skills-expr":"Skills",
-	  "about-expr":"About",
-	  "see-all": "View All",
-	  "my-latest-work": "My Latest Works",
-	  "my-recent-work": "Take a look at some of our recent products"
-	}
+    {
+      "name": "Xu Yi",
+      "job": "Student, Software Engineer",
+      "education-expr": "Education",
+      "internship-expr": "Internship",
+      "work-expr": "Work",
+      "project-expr": "Project",
+      "skills-expr": "Skills",
+      "about-expr": "About",
+      "see-all": "View All",
+      "my-latest-work": "My Latest Works",
+      "my-recent-work": "Take a look at some of our recent products",
+      "BJ-opera-relationship":""
+    }
   ]
 }
