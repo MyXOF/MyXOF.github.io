@@ -1,2 +1,0 @@
-# Doge
-Doge's homepage
