@@ -8,7 +8,9 @@ before_script:
 # Assume bundler is being used, therefore
 # the `install` step will run `bundle install` by default.
 install: gem install jekyll html-proofer jekyll-sitemap
-script: scripts/build.sh
+script:
+  - bundle install
+  - scripts/build.sh
 
 
 env:
@@ -20,7 +22,8 @@ addons:
     packages:
     - libcurl4-openssl-dev
 
-sudo: false # route your build to the container-based infrastructure for a faster build
+# route your build to the container-based infrastructure for a faster build
+sudo: true
 
 cache: bundler # caching bundler gem packages will speed up build
 
