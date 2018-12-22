@@ -40,4 +40,4 @@ deploy:
   provider: scripts
   script: scripts/deploy.sh
   on:
-    branch: gh-pages
+    branch: master
