@@ -2,7 +2,7 @@
 {% for entry in selectedcategory %}
 <section>
 <p style="font-size:1.3rem">
-<a href="{{ entry.url }}/">{{ entry.title }}</a>:
+<a href="{{ entry.url }}">{{ entry.title }}</a>:
 <em>{{ entry.description }}</em>
 </p>
 </section>
