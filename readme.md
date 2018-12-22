@@ -2,8 +2,10 @@
 
 [![Build Status](https://travis-ci.org/MyXOF/MyXOF.github.io.svg?branch=master)](https://travis-ci.org/MyXOF/MyXOF.github.io)
 [![security](https://hakiri.io/github/MyXOF/MyXOF.github.io/master.svg)](https://hakiri.io/github/MyXOF/MyXOF.github.io/master)
+[![CodeFactor](https://www.codefactor.io/repository/github/myxof/myxof.github.io/badge)](https://www.codefactor.io/repository/github/myxof/myxof.github.io)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c9e520cfb0c097df9b6a/maintainability)](https://codeclimate.com/github/MyXOF/MyXOF.github.io/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c9e520cfb0c097df9b6a/test_coverage)](https://codeclimate.com/github/MyXOF/MyXOF.github.io/test_coverage)
+
 ## Requirements
 
 * Ruby >= 2.4
