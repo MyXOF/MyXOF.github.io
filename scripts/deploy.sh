@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $TRAVIS_BRANCH == 'gh-pages' ]] ; then
+if [[ $TRAVIS_BRANCH == 'master' ]] ; then
   cd _site
   git init
 
