@@ -4,15 +4,20 @@ title: Books
 permalink: /book/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+## 2018年书单
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+### 世纪3三部曲
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+* 巨人的陨落
+* 世界的凛东
+* 永恒的边缘
+
+> 说到底，世界上只有一种英雄主义，就是在认清了生活的真相之后，依然热爱生活。
+
+### 基督山伯爵
 
 
-[jekyll-organization]: https://github.com/jekyll
+
+### 红与黑
+
+
