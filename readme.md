@@ -5,6 +5,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/myxof/myxof.github.io/badge)](https://www.codefactor.io/repository/github/myxof/myxof.github.io)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c9e520cfb0c097df9b6a/maintainability)](https://codeclimate.com/github/MyXOF/MyXOF.github.io/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c9e520cfb0c097df9b6a/test_coverage)](https://codeclimate.com/github/MyXOF/MyXOF.github.io/test_coverage)
+[![codebeat badge](https://codebeat.co/badges/24750fe7-e18b-4584-ad2b-35cba2af5b7e)](https://codebeat.co/projects/github-com-myxof-myxof-github-io-master)
 
 ## Requirements
 
