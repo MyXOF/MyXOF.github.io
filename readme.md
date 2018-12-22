@@ -1,6 +1,7 @@
 ## Status
 
 [![Build Status](https://travis-ci.org/MyXOF/MyXOF.github.io.svg?branch=master)](https://travis-ci.org/MyXOF/MyXOF.github.io)
+[![buddy pipeline](https://app.buddy.works/myxof/myxof-github-io/pipelines/pipeline/165076/badge.svg?token=1c753ad5a15252645fce6cf131a6f75aef7e003bca78429bb04e0a893ca9b42f "buddy pipeline")](https://app.buddy.works/myxof/myxof-github-io/pipelines/pipeline/165076)
 [![security](https://hakiri.io/github/MyXOF/MyXOF.github.io/master.svg)](https://hakiri.io/github/MyXOF/MyXOF.github.io/master)
 [![CodeFactor](https://www.codefactor.io/repository/github/myxof/myxof.github.io/badge)](https://www.codefactor.io/repository/github/myxof/myxof.github.io)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c9e520cfb0c097df9b6a/maintainability)](https://codeclimate.com/github/MyXOF/MyXOF.github.io/maintainability)
