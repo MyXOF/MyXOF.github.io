@@ -8,3 +8,4 @@ showinnav: true
 
 {% assign selectedcategory = site.tags.skills %}
 {% include categorycontents %}
+
