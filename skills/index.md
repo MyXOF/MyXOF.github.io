@@ -6,4 +6,5 @@ permalink: /skills/
 showinnav: true
 ---
 
-更多知识折跃中...
+{% assign selectedcategory = site.tags.skills %}
+{% include categorycontents %}

@@ -10,14 +10,14 @@
 
 当Ruby安装完成之后，还需要安装jekyll
 
-```shell
+```$xslt
 $ gem install jekyll
 $ jekyll -version
 ```
 
 ## Usage
 
-```shell
+```$xslt
 $ git clone git@github.com:MyXOF/MyXOF.github.io.git
 $ cd MyXOF.github.io
 $ bundle install --without test
@@ -27,3 +27,6 @@ $ jekyll serve
 这时候可以去`http://127.0.0.1:4000/`看网站运行的结果。
 
 ## 参考
+
+* https://www.jekyll.com.cn/docs/home/
+* https://github.com/github/teach.github.com/tree/content-overflow-fix
