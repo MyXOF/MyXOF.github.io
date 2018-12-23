@@ -24,11 +24,14 @@ github_username:  MyXOF
 
 # Build settings
 markdown: kramdown
+toc_levels: 1..2
 theme: minima
 # theme: jekyll-theme-cayman
 plugins:
   - jekyll-feed
+  - jekyll-last-modified-at
 
+paginate: 5
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
