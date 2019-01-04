@@ -3,7 +3,7 @@ layout: post
 title: Ruby安装方法
 description: （更新中...）.
 path: skills/_posts/2018-12-26-ruby-installer.md
-tags: [reference, skills]
+tags: [skills, ruby]
 ---
 
 * any list
@@ -33,7 +33,7 @@ exec $SHELL
 rbenv install -v 2.6.0
 
 # 使用指定版本的Ruby
-rbenv global 2.2.1
+rbenv global 2.6.0
 
 # 如果用命令行ssh登录，可能需要重新连接一下才能看到版本的变化
 ruby -v

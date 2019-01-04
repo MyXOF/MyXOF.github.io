@@ -3,7 +3,7 @@ layout: post
 title: Git用法总结
 description: （更新中...）.
 path: skills/_posts/2018-12-22-git-cheatsheet.md
-tags: [reference, skills]
+tags: [skills, git]
 ---
 
 * any list

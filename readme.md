@@ -34,5 +34,5 @@ $ jekyll serve
 
 ## 参考
 
-* https://www.jekyll.com.cn/docs/home/
-* https://github.com/github/teach.github.com/tree/content-overflow-fix
+* jekyll教程，https://www.jekyll.com.cn/docs/home/
+* 源码学习，https://github.com/github/teach.github.com/tree/content-overflow-fix

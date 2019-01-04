@@ -3,7 +3,7 @@ layout: post
 title: 第課
 description: XXX.
 path: japanese/_posts/20XX-XX-XX-japaneseX-XX.md
-tags: [reference, japanese0]
+tags: [japanese]
 ---
 
 * any list
