@@ -30,13 +30,30 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-last-modified-at
+  - jekyll-paginate-v2
 
-paginate: 5
+plugins_dir:
+  - jekyll-paginate-v2
+
+# Produces a cleaner folder structure when using categories
+permalink: /:year/:month/:title.html
+
+# Pagination Settings
+pagination:
+  enabled: true
+  per_page: 8
+  offset: 0
+  permalink: '/page/:num/'
+  title: ':title - page :num of :max'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
+exclude:
+   - Gemfile
 #   - Gemfile.lock
 #   - node_modules
 #   - vendor/bundle/
