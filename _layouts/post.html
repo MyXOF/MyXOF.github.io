@@ -9,7 +9,7 @@ layout: default
       <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
         <!--{%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}-->
         <!--{{ page.date | date: date_format }}-->
-        最后修改于 {{ page.last_modified_at | date: '%b %-d, %Y' }} 转载请注明出处
+        最后修改于 {{ page.last_modified_at | date: '%b %-d, %Y' }} | 共计{{ page.content | number_of_words }}字 | 转载请注明出处
       </time>
       {%- if page.author -%}
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
@@ -19,6 +19,25 @@ layout: default
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
   </div>
+
+  <script src="https://unpkg.com/vanilla-back-to-top@7.2.0/dist/vanilla-back-to-top.min.js"></script>
+  <script>addBackToTop({
+    backgroundColor: '#fff',
+    innerHTML: 'Back to Top',
+    textColor: '#333'
+  })</script>
+  <style>
+    #back-to-top {
+      border: 1px solid #ccc;
+      border-radius: 0;
+      font-family: sans-serif;
+      font-size: 14px;
+      width: 100px;
+      text-align: center;
+      line-height: 30px;
+      height: 30px;
+    }
+  </style>
 
   {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}
