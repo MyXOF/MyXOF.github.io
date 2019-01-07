@@ -11,7 +11,7 @@ before_script:
 
 # Assume bundler is being used, therefore
 # the `install` step will run `bundle install` by default.
-install: gem install jekyll html-proofer jekyll-sitemap jekyll-paginate-v2
+install: gem install jekyll html-proofer jekyll-sitemap jekyll-paginate-v2 bundler
 script:
   - bundle install --without test
   - scripts/build.sh
