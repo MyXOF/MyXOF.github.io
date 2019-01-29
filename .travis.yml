@@ -17,6 +17,8 @@ script:
   - bundle install --without test
   - scripts/build.sh
 
+after_success:
+  - scripts/deploy.sh
 
 env:
   global:
@@ -36,10 +38,10 @@ sudo: true
 notifications:
   email: false
 
-
-deploy:
-  skip_cleanup: true
-  provider: scripts
-  script: scripts/deploy.sh
-  on:
-    branch: gh-pages
+#
+#deploy:
+#  skip_cleanup: true
+#  provider: scripts
+#  script: scripts/deploy.sh
+#  on:
+#    branch: gh-pages
