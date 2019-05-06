@@ -6,25 +6,29 @@ permalink: /books/
 showinnav: true
 ---
 
-## 2018年书单
+## 待读
 
-{% assign selectedcategory = site.tags.booksheet2018 %}
-{% include categorycontents %}
+* 沙丘3
+* 百年孤独
+* 人间失格
+* 战争论
+* 毛主席文选
+* 蓝海战略
+* 海错图2
+* 穷查理宝典
+* 日语中级
 
-#### 未收录
+## 2019年书单
 
 * 半小时漫画中国史1-3.陈磊（笔名：二混子）著
+* 沙丘1
+* 沙丘2
+* 具体生活
+
+## 2018年书单
+
 * Go语言编程. 许式伟 等 著
 * 中国国家地理 海错图笔记2. 张辰亮 著
 * 世纪三部曲
-
-## 2017年书单
-
-{% assign selectedcategory = site.tags.booksheet2017 %}
-{% include categorycontents %}
-
-#### 未收录
-
-* 图解Spark：核心技术与案例实战. 郭景瞻 著
-* 中国国家地理 海错图笔记. 张辰亮 著
-
+* 基督山伯爵
+* 红与黑
