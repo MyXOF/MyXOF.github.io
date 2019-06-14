@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 第課
+title: 第2課
 description: XXX.
 path: japanese/_posts/20XX-XX-XX-japaneseX-XX.md
 tags: [japanese]
