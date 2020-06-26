@@ -6,6 +6,20 @@ permalink: /amusement/
 showinnav: true
 ---
 
+## 2020年
+
+### 游戏
+
+* Master Chief Collection
+* 仁王2（视频）
+
+
+### 动画
+
+* 辉夜大小姐想让我告白~天才们的恋爱头脑战~ 第二季
+* 格莱普尼尔
+
+
 ## 2019年
 
 ### 游戏
