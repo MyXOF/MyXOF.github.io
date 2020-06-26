@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Java中时间类Joda的使用总结 | MYXOF的博客</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Java中时间类Joda的使用总结" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="（完结）" />
+<meta property="og:description" content="（完结）" />
+<link rel="canonical" href="http://localhost:4000/2018/12/joda.html" />
+<meta property="og:url" content="http://localhost:4000/2018/12/joda.html" />
+<meta property="og:site_name" content="MYXOF的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-12-31T00:00:00+08:00" />
+<script type="application/ld+json">
+{"description":"（完结）","@type":"BlogPosting","url":"http://localhost:4000/2018/12/joda.html","headline":"Java中时间类Joda的使用总结","dateModified":"2019-01-29T16:13:30+08:00","datePublished":"2018-12-31T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/12/joda.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="MYXOF的博客" /></head>
+<body><header class="site-header" role="banner">
+
+    <div class="wrapper">
+
+        <a class="site-title" href="/">MYXOF的博客</a>
+
+        <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+            <div class="trigger">
+                <!--
+                    my_page.autogen is populated by the pagination logic for all pages
+                                    that are automatically created by the gem. Check for non-existence to exclude pagination pages from site.pages iterators
+                  -->
+
+                
+                
+                
+                
+                <a class="page-link" href="/about/">关于</a>
+                
+                
+                
+                <a class="page-link" href="/amusement/">娱乐</a>
+                
+                
+                
+                <a class="page-link" href="/research/">研究</a>
+                
+                
+                
+                <a class="page-link" href="/skills/">技巧</a>
+                
+                
+                
+                <a class="page-link" href="/japanese/">日本語の勉強</a>
+                
+                
+                
+                <a class="page-link" href="/books/">书单</a>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+
+    </div>
+
+</header>
+<main class="page-content" aria-label="Content">
+    <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Java中时间类Joda的使用总结</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-12-31T00:00:00+08:00" itemprop="datePublished">
+        <!---->
+        <!--Dec 31, 2018-->
+        最后修改于 Jan 29, 2019 | 共计1405字 | 转载请注明出处
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="markdown-toc">
+  <li><a href="#基本概念" id="markdown-toc-基本概念">基本概念</a></li>
+  <li><a href="#joda基本用法" id="markdown-toc-joda基本用法">Joda基本用法</a>    <ul>
+      <li><a href="#maven仓库" id="markdown-toc-maven仓库">Maven仓库</a></li>
+      <li><a href="#类和主要api说明" id="markdown-toc-类和主要api说明">类和主要API说明</a>        <ul>
+          <li><a href="#instant" id="markdown-toc-instant">Instant</a></li>
+          <li><a href="#datetimezone" id="markdown-toc-datetimezone">DateTimeZone</a></li>
+          <li><a href="#datetime" id="markdown-toc-datetime">DateTime</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#joda-in-jdk18" id="markdown-toc-joda-in-jdk18">Joda in JDK1.8</a>    <ul>
+      <li><a href="#datetimezone一份为二" id="markdown-toc-datetimezone一份为二">DateTimeZone一份为二</a></li>
+      <li><a href="#datetime一分为三" id="markdown-toc-datetime一分为三">DateTime一分为三</a></li>
+      <li><a href="#多种日期格式的识别" id="markdown-toc-多种日期格式的识别">多种日期格式的识别</a></li>
+      <li><a href="#小坑" id="markdown-toc-小坑">小坑</a>        <ul>
+          <li><a href="#utc时区" id="markdown-toc-utc时区">UTC时区</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<h2 id="基本概念">基本概念</h2>
+
+<p>在处理时间相关的问题的时候，首先需要明确几个基本概念：时间戳，绝对时间和相对时间。</p>
+
+<p>时间戳在广义上是指，能够唯一地标识某一刻的时间。在狭义上（下文中的时间戳都按狭义的概念理解）就是一个long类型的值，指代某一个时刻。比如在Java和其他一些语言里面<code class="highlighter-rouge">long timestamp = 0L</code>，就表示0时区里1970年1月1日0时0分0秒。相应换算成我们常用的北京时间（+08:00）的话，就是1970年1月1日8时0分0秒。</p>
+
+<p>这里要说的绝对时间主要是指，long类型和带时区的字符串类型。比如0L和”1970-1-1 00:00:00+00:00”，这样就能唯一确定一个时刻。相应的，”1970-1-1 00:00:00”就是一个相对时间。如果不提供时区信息，就无法准确定位某一个时刻。</p>
+
+<p>在日常的开发中，往往需要做一些时间相关的处理，比如用户输入了一个时间戳，想把它转化为一个“可读”的日期字符等。</p>
+
+<h2 id="joda基本用法">Joda基本用法</h2>
+
+<blockquote>
+  <p>Joda-Time provides a quality replacement for the Java date and time classes.</p>
+</blockquote>
+
+<p>在jdk1.7以前，java内置的时间处理相关的类功能比较弱，还有一些并发上的问题，所以多用joda这个库中所提供的API来操作时间。</p>
+
+<h3 id="maven仓库">Maven仓库</h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>joda-time<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>joda-time<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.10.1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+<h3 id="类和主要api说明">类和主要API说明</h3>
+
+<p>Joda中最常用的类有3个。</p>
+
+<ul>
+  <li>Instant - 封装了时间戳的对象</li>
+  <li>DateTimeZone - 时区类</li>
+  <li>DateTime - full date and time with time-zone</li>
+</ul>
+
+<h4 id="instant">Instant</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.joda.time.DateTime</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.joda.time.Instant</span><span class="o">;</span>
+
+<span class="c1">// 获取当前系统时间戳</span>
+<span class="n">Instant</span> <span class="n">now</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+
+<span class="c1">// 从给定的long类型数字构造事假戳对象</span>
+<span class="n">Instant</span> <span class="n">instant</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">ofEpochMilli</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+<span class="c1">// 获取这个对象保存的时间戳</span>
+<span class="n">instant</span><span class="o">.</span><span class="na">getMillis</span><span class="o">();</span>
+
+<span class="c1">// 转化为DateTime对象</span>
+<span class="n">DateTime</span> <span class="n">dateTime</span> <span class="o">=</span> <span class="n">instant</span><span class="o">.</span><span class="na">toDateTime</span><span class="o">();</span>
+
+<span class="c1">// 从一个字符串中按ISO格式解析并构造时间戳对象</span>
+<span class="n">Instant</span> <span class="n">newYear1</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"2019-1-1T00:00:00+08:00"</span><span class="o">);</span>
+
+<span class="c1">// 从一个字符串中按自定义格式解析并构造时间戳对象</span>
+<span class="n">Instant</span> <span class="n">newYear2</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"2019.1.1T00:00:00+08:00"</span><span class="o">,</span> <span class="n">DateTimeFormat</span><span class="o">.</span><span class="na">forPattern</span><span class="o">(</span><span class="s">"yyyy.MM.dd'T'HH:mm:ssZZ"</span><span class="o">));</span>
+</code></pre></div></div>
+
+<h4 id="datetimezone">DateTimeZone</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.joda.time.DateTimeZone</span><span class="o">;</span>
+
+<span class="c1">// 获取当前默认的时区</span>
+<span class="n">DateTimeZone</span> <span class="n">now</span> <span class="o">=</span> <span class="n">DateTimeZone</span><span class="o">.</span><span class="na">getDefault</span><span class="o">();</span>
+
+<span class="c1">// 都是构造+08:00时区</span>
+<span class="n">DateTimeZone</span> <span class="n">bejing</span> <span class="o">=</span> <span class="n">DateTimeZone</span><span class="o">.</span><span class="na">forID</span><span class="o">(</span><span class="s">"+08:00"</span><span class="o">);</span>
+<span class="n">DateTimeZone</span> <span class="n">shanghai</span> <span class="o">=</span><span class="n">DateTimeZone</span><span class="o">.</span><span class="na">forID</span><span class="o">(</span><span class="s">"Asia/Shanghai"</span><span class="o">);</span>
+
+<span class="c1">// 获取DateTimeZone对象保存的时区信息</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">shanghai</span><span class="o">.</span><span class="na">getID</span><span class="o">());</span>
+
+<span class="c1">// 获取所有可用的时区</span>
+<span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="n">zone</span> <span class="o">:</span> <span class="n">DateTimeZone</span><span class="o">.</span><span class="na">getAvailableIDs</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">zone</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="datetime">DateTime</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.joda.time.DateTime</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.joda.time.DateTimeZone</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.joda.time.format.DateTimeFormat</span><span class="o">;</span>
+
+<span class="c1">// 用系统当前时间戳和默认时区构造</span>
+<span class="n">DateTime</span> <span class="n">dateTime1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">();</span>
+<span class="n">DateTime</span> <span class="n">dateTime5</span> <span class="o">=</span> <span class="n">DateTime</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+
+<span class="c1">// 用给定时间戳和默认时区构造</span>
+<span class="n">DateTime</span> <span class="n">dateTime2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+
+<span class="c1">// 用给定时间戳和给定的时区构造</span>
+<span class="n">DateTime</span> <span class="n">dateTime3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTime</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">DateTimeZone</span><span class="o">.</span><span class="na">getDefault</span><span class="o">());</span>
+
+<span class="c1">// 用系统当前时间戳和给定的时区构造</span>
+<span class="n">DateTime</span> <span class="n">dateTime6</span> <span class="o">=</span> <span class="n">DateTime</span><span class="o">.</span><span class="na">now</span><span class="o">(</span><span class="n">DateTimeZone</span><span class="o">.</span><span class="na">getDefault</span><span class="o">());</span>
+
+<span class="c1">// 从一个字符串中按ISO格式解析并构造DateTime对象</span>
+<span class="n">DateTime</span> <span class="n">dateTime7</span> <span class="o">=</span> <span class="n">DateTime</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"2019-1-1T00:00:00+08:00"</span><span class="o">);</span>
+
+<span class="c1">// 从一个字符串中按自定义格式解析并构造DateTime对象</span>
+<span class="n">DateTime</span> <span class="n">dateTime8</span> <span class="o">=</span> <span class="n">DateTime</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"2019.1.1T00:00:00+08:00"</span><span class="o">,</span> <span class="n">DateTimeFormat</span><span class="o">.</span><span class="na">forPattern</span><span class="o">(</span><span class="s">"yyyy.MM.dd'T'HH:mm:ssZZ"</span><span class="o">));</span>
+
+<span class="c1">// 转化为时间戳</span>
+<span class="kt">long</span> <span class="n">timestamp</span> <span class="o">=</span> <span class="n">dateTime8</span><span class="o">.</span><span class="na">getMillis</span><span class="o">();</span>
+
+<span class="c1">// 获取保存的时区</span>
+<span class="n">DateTimeZone</span> <span class="n">zone</span> <span class="o">=</span> <span class="n">dateTime8</span><span class="o">.</span><span class="na">getZone</span><span class="o">();</span>
+
+<span class="c1">// 按ISO格式转化成字符串</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">dateTime8</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+
+<span class="c1">// 按自定义格式转化成字符串</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">dateTime8</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="s">"yyyy.MM.dd'T'HH:mm:ssZZ"</span><span class="o">));</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">dateTime8</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">DateTimeFormat</span><span class="o">.</span><span class="na">forPattern</span><span class="o">(</span><span class="s">"yyyy/MM/dd'T'HH:mm:ssZZ"</span><span class="o">)));</span>
+</code></pre></div></div>
+
+<h2 id="joda-in-jdk18">Joda in JDK1.8</h2>
+
+<p>在JDK1.8之后，Joda就已经作为官方标准加入到了Java内部类中，放置在<code class="highlighter-rouge">java.time</code>包下，但名字和用法发生了相应的变化。</p>
+
+<blockquote>
+  <p>Joda-Time is the de facto standard date and time library for Java prior to Java SE 8. Users are now asked to migrate to java.time (JSR-310).</p>
+</blockquote>
+
+<p>其中主要的变化有两个。</p>
+
+<h3 id="datetimezone一份为二">DateTimeZone一份为二</h3>
+
+<ul>
+  <li>ZoneId          - 和DateTimeZone用法和作用范围基本一致，API的名字略微变化</li>
+  <li>ZoneOffset      - ZoneId的子集，只能接受<code class="highlighter-rouge">+08:00</code>的格式，不支持<code class="highlighter-rouge">Asia/Shanghai</code>的格式</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 将ZoneId转化为ZoneOffset</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">ZoneOffset</span> <span class="nf">toZoneOffset</span><span class="o">(</span><span class="n">ZoneId</span> <span class="n">zoneId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">zoneId</span><span class="o">.</span><span class="na">getRules</span><span class="o">().</span><span class="na">getOffset</span><span class="o">(</span><span class="n">Instant</span><span class="o">.</span><span class="na">now</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="datetime一分为三">DateTime一分为三</h3>
+
+<ul>
+  <li>LocalDateTime  - 只提供，不带时区的相对时间（比如”2019-1-1T00:00:00”）相关的处理。如果让想要从一个带时区的字符串中构造LocalDateTime，将报错</li>
+  <li>ZonedDateTime  - 只提供，带时区的时间（比如”2019-1-1T00:00:00+08:00”）相关的处理。如果让想要从一个不带时区的字符串中构造ZonedDateTime，将报错</li>
+  <li>OffsetDateTime  - ZonedDateTime的子集，也只能处理带时区的字符串，而且时区的格式接受<code class="highlighter-rouge">+08:00</code>的格式，不支持<code class="highlighter-rouge">Asia/Shanghai</code>的格式</li>
+</ul>
+
+<p><code class="highlighter-rouge">ZonedDateTime</code>和<code class="highlighter-rouge">OffsetDateTime</code>都可以接受一个时间戳作为构造函数的参数，但需要先手动封装成java.time.Instant对象。</p>
+
+<p>可以看到，将DateTime分解之后，通用性降低了，用户需要知道自己的字符串是不是带时区的，才能选择对应的类进行处理，不像Joda中直接用<code class="highlighter-rouge">DateTime</code>就可以了。虽然降低了解析出错的可能性，但是确实给编程的增加了很多麻烦。</p>
+
+<h3 id="多种日期格式的识别">多种日期格式的识别</h3>
+
+<p>假如能够保证输入的日期是带时区的，但是格式可能是”yyyy.MM.dd’T’HH:mm:ssZZ”，也可能是”yyyy/MM/dd HH:mm:ssZZ”，怎么优雅地解析这些字符串呢？</p>
+
+<p>从下面的代码中可以看到，先用DateTimeFormatter构造若干种基本的模式（’2011-12-03’，’2011/12/03’，’10:15:30’），然后再把它们组合起来。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DatetimeUtils</span> <span class="o">{</span>
+	<span class="c1">// such as '2011-12-03'.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">DateTimeFormatter</span> <span class="n">ISO_LOCAL_DATE_WIDTH_1_2</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="o">{</span>
+    	<span class="n">ISO_LOCAL_DATE_WIDTH_1_2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTimeFormatterBuilder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">appendValue</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">YEAR</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="n">SignStyle</span><span class="o">.</span><span class="na">EXCEEDS_PAD</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="sc">'-'</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendValue</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">MONTH_OF_YEAR</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="n">SignStyle</span><span class="o">.</span><span class="na">NEVER</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="sc">'-'</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendValue</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">DAY_OF_MONTH</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="n">SignStyle</span><span class="o">.</span><span class="na">NEVER</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">toFormatter</span><span class="o">();</span>
+    <span class="o">}</span>
+
+	<span class="c1">// such as '2011/12/03'.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">DateTimeFormatter</span> <span class="n">ISO_LOCAL_DATE_WITH_SLASH</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="o">{</span>
+    	<span class="n">ISO_LOCAL_DATE_WITH_SLASH</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTimeFormatterBuilder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">appendValue</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">YEAR</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="n">SignStyle</span><span class="o">.</span><span class="na">EXCEEDS_PAD</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="sc">'/'</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendValue</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">MONTH_OF_YEAR</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="n">SignStyle</span><span class="o">.</span><span class="na">NEVER</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="sc">'/'</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendValue</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">DAY_OF_MONTH</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="n">SignStyle</span><span class="o">.</span><span class="na">NEVER</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">toFormatter</span><span class="o">();</span>
+    <span class="o">}</span>
+
+	<span class="c1">// such as '10:15:30' or '10:15:30.123'.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">DateTimeFormatter</span> <span class="n">ISO_LOCAL_TIME_WITH_MS</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="o">{</span>
+    	<span class="n">ISO_LOCAL_TIME_WITH_MS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTimeFormatterBuilder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">appendValue</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">HOUR_OF_DAY</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="sc">':'</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendValue</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">MINUTE_OF_HOUR</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="sc">':'</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendValue</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">SECOND_OF_MINUTE</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">optionalStart</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="sc">'.'</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendValue</span><span class="o">(</span><span class="n">ChronoField</span><span class="o">.</span><span class="na">MILLI_OF_SECOND</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">optionalEnd</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">toFormatter</span><span class="o">();</span>
+    <span class="o">}</span>
+
+	<span class="c1">// such as '2011-12-03T10:15:30+01:00' or '2011-12-03T10:15:30.123+01:00'.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">DateTimeFormatter</span> <span class="n">ISO_OFFSET_DATE_TIME_WITH_MS</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="o">{</span>
+    	<span class="n">ISO_OFFSET_DATE_TIME_WITH_MS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTimeFormatterBuilder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">parseCaseInsensitive</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">ISO_LOCAL_DATE_WIDTH_1_2</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="sc">'T'</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">ISO_LOCAL_TIME_WITH_MS</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendOffsetId</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">toFormatter</span><span class="o">();</span>
+    <span class="o">}</span>
+
+	<span class="c1">// such as '2011/12/03T10:15:30+01:00' or '2011/12/03T10:15:30.123+01:00'.</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">DateTimeFormatter</span> <span class="n">ISO_OFFSET_DATE_TIME_WITH_SLASH</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="o">{</span>
+    	<span class="n">ISO_OFFSET_DATE_TIME_WITH_SLASH</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTimeFormatterBuilder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">parseCaseInsensitive</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">ISO_LOCAL_DATE_WITH_SLASH</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendLiteral</span><span class="o">(</span><span class="sc">'T'</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">ISO_LOCAL_TIME_WITH_MS</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendOffsetId</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">toFormatter</span><span class="o">();</span> 
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">DateTimeFormatter</span> <span class="n">formatter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DateTimeFormatterBuilder</span><span class="o">()</span>		
+			 <span class="c1">// such as '2011-12-03T10:15:30+01:00' or '2011-12-03T10:15:30.123+01:00'.</span>
+			<span class="o">.</span><span class="na">appendOptional</span><span class="o">(</span><span class="n">ISO_OFFSET_DATE_TIME_WITH_MS</span><span class="o">)</span>
+			 <span class="c1">// such as '2011/12/03T10:15:30+01:00' or '2011/12/03T10:15:30.123+01:00'.</span>
+			<span class="o">.</span><span class="na">appendOptional</span><span class="o">(</span><span class="n">ISO_OFFSET_DATE_TIME_WITH_SLASH</span><span class="o">)</span>
+			<span class="o">.</span><span class="na">toFormatter</span><span class="o">();</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">convertDatetimeStrToLong</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">ZonedDateTime</span> <span class="n">zonedDateTime</span> <span class="o">=</span> <span class="n">ZonedDateTime</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">str</span><span class="o">,</span> <span class="n">formatter</span><span class="o">);</span>
+		<span class="k">return</span> <span class="n">zonedDateTime</span><span class="o">.</span><span class="na">toInstant</span><span class="o">().</span><span class="na">toEpochMilli</span><span class="o">();</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="小坑">小坑</h3>
+
+<h4 id="utc时区">UTC时区</h4>
+
+<p>做项目的时候发现了一个容易忽略的问题，如果自己试一下下面的代码会发现，所有表示为”+00:00”的ZoneOffset的toString()方法返回的都是”Z”，而不是预想中的”+00:00”。</p>
+
+<p>因此如果通过解析ZoneOffset的数字，计算和0时区差多少小时的时候，要特别注意它自己是不是零时区。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// convert ZoneId to ZoneOffset</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">ZoneOffset</span> <span class="nf">toZoneOffset</span><span class="o">(</span><span class="n">ZoneId</span> <span class="n">zoneId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">zoneId</span><span class="o">.</span><span class="na">getRules</span><span class="o">().</span><span class="na">getOffset</span><span class="o">(</span><span class="n">Instant</span><span class="o">.</span><span class="na">now</span><span class="o">());</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+    <span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="n">zoneId</span> <span class="o">:</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">getAvailableZoneIds</span><span class="o">()){</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">zoneId</span> <span class="o">+</span> <span class="s">": "</span> <span class="o">+</span> <span class="n">DatetimeUtils</span><span class="o">.</span><span class="na">toZoneOffset</span><span class="o">(</span><span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">zoneId</span><span class="o">)));</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  
+<span class="o">--------------------</span>
+
+<span class="o">...</span>
+<span class="n">Africa</span><span class="o">/</span><span class="nl">Casablanca:</span> <span class="n">Z</span>
+<span class="n">Europe</span><span class="o">/</span><span class="nl">Belfast:</span> <span class="n">Z</span>
+<span class="n">America</span><span class="o">/</span><span class="nl">Fortaleza:</span> <span class="o">-</span><span class="mo">03</span><span class="o">:</span><span class="mo">00</span>
+<span class="n">Etc</span><span class="o">/</span><span class="nl">GMT0:</span> <span class="n">Z</span>
+<span class="n">Africa</span><span class="o">/</span><span class="nl">Dakar:</span> <span class="n">Z</span>
+<span class="nl">Jamaica:</span> <span class="o">-</span><span class="mo">05</span><span class="o">:</span><span class="mo">00</span>
+<span class="n">Africa</span><span class="o">/</span><span class="nl">Bissau:</span> <span class="n">Z</span>
+<span class="n">Asia</span><span class="o">/</span><span class="nl">Tehran:</span> <span class="o">+</span><span class="mo">03</span><span class="o">:</span><span class="mi">30</span>
+<span class="nl">WET:</span> <span class="n">Z</span>
+<span class="n">Europe</span><span class="o">/</span><span class="nl">Astrakhan:</span> <span class="o">+</span><span class="mo">04</span><span class="o">:</span><span class="mo">00</span>
+<span class="nl">UCT:</span> <span class="n">Z</span>
+<span class="nl">EET:</span> <span class="o">+</span><span class="mo">02</span><span class="o">:</span><span class="mo">00</span>
+<span class="n">Etc</span><span class="o">/</span><span class="nl">UTC:</span> <span class="n">Z</span>
+<span class="o">...</span>
+</code></pre></div></div>
+
+<h2 id="参考">参考</h2>
+
+<ol>
+  <li>Joda官网，https://www.joda.org/joda-time/index.html#</li>
+  <li>Oracle官网文档，https://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html</li>
+</ol>
+
+  </div>
+
+  <script src="https://unpkg.com/vanilla-back-to-top@7.2.0/dist/vanilla-back-to-top.min.js"></script>
+  <script>addBackToTop({
+    backgroundColor: '#fff',
+    innerHTML: 'Back to Top',
+    textColor: '#333'
+  })</script>
+  <style>
+    #back-to-top {
+      border: 1px solid #ccc;
+      border-radius: 0;
+      font-family: sans-serif;
+      font-size: 14px;
+      width: 100px;
+      text-align: center;
+      line-height: 30px;
+      height: 30px;
+    }
+  </style><a class="u-url" href="/2018/12/joda.html" hidden></a>
+</article>
+
+    </div>
+</main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">MYXOF的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">MYXOF的博客</li><li><a class="u-email" href="mailto:xuyithuss@126.com">xuyithuss@126.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/MyXOF"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">MyXOF</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Copyright © 2018 MYXOF. All Right Reserved.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

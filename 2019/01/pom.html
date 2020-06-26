@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Maven项目pom.xml文件浅析 | MYXOF的博客</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Maven项目pom.xml文件浅析" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="（更新中…）." />
+<meta property="og:description" content="（更新中…）." />
+<link rel="canonical" href="http://localhost:4000/2019/01/pom.html" />
+<meta property="og:url" content="http://localhost:4000/2019/01/pom.html" />
+<meta property="og:site_name" content="MYXOF的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-01-06T00:00:00+08:00" />
+<script type="application/ld+json">
+{"description":"（更新中…）.","@type":"BlogPosting","url":"http://localhost:4000/2019/01/pom.html","headline":"Maven项目pom.xml文件浅析","dateModified":"2019-01-13T14:41:28+08:00","datePublished":"2019-01-06T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019/01/pom.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="MYXOF的博客" /></head>
+<body><header class="site-header" role="banner">
+
+    <div class="wrapper">
+
+        <a class="site-title" href="/">MYXOF的博客</a>
+
+        <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+            <div class="trigger">
+                <!--
+                    my_page.autogen is populated by the pagination logic for all pages
+                                    that are automatically created by the gem. Check for non-existence to exclude pagination pages from site.pages iterators
+                  -->
+
+                
+                
+                
+                
+                <a class="page-link" href="/about/">关于</a>
+                
+                
+                
+                <a class="page-link" href="/amusement/">娱乐</a>
+                
+                
+                
+                <a class="page-link" href="/research/">研究</a>
+                
+                
+                
+                <a class="page-link" href="/skills/">技巧</a>
+                
+                
+                
+                <a class="page-link" href="/japanese/">日本語の勉強</a>
+                
+                
+                
+                <a class="page-link" href="/books/">书单</a>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+
+    </div>
+
+</header>
+<main class="page-content" aria-label="Content">
+    <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Maven项目pom.xml文件浅析</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-01-06T00:00:00+08:00" itemprop="datePublished">
+        <!---->
+        <!--Jan 6, 2019-->
+        最后修改于 Jan 13, 2019 | 共计2374字 | 转载请注明出处
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="markdown-toc">
+  <li><a href="#安装--配置-maven" id="markdown-toc-安装--配置-maven">安装 &amp; 配置 Maven</a>    <ul>
+      <li><a href="#linux-osx" id="markdown-toc-linux-osx">Linux/ OSX</a></li>
+      <li><a href="#windows" id="markdown-toc-windows">Windows</a></li>
+    </ul>
+  </li>
+  <li><a href="#基本功能" id="markdown-toc-基本功能">基本功能</a>    <ul>
+      <li><a href="#项目结构" id="markdown-toc-项目结构">项目结构</a></li>
+      <li><a href="#全局属性设置" id="markdown-toc-全局属性设置">全局属性设置</a></li>
+      <li><a href="#依赖引入" id="markdown-toc-依赖引入">依赖引入</a></li>
+      <li><a href="#常用命令" id="markdown-toc-常用命令">常用命令</a></li>
+      <li><a href="#小结" id="markdown-toc-小结">小结</a></li>
+    </ul>
+  </li>
+  <li><a href="#maven概念理解" id="markdown-toc-maven概念理解">Maven概念理解</a>    <ul>
+      <li><a href="#生命周期" id="markdown-toc-生命周期">生命周期</a></li>
+      <li><a href="#父子模块" id="markdown-toc-父子模块">父/子模块</a></li>
+      <li><a href="#依赖" id="markdown-toc-依赖">依赖</a>        <ul>
+          <li><a href="#注意事项" id="markdown-toc-注意事项">注意事项</a></li>
+          <li><a href="#依赖作用域" id="markdown-toc-依赖作用域">依赖作用域</a></li>
+          <li><a href="#依赖组管理" id="markdown-toc-依赖组管理">依赖组管理</a></li>
+        </ul>
+      </li>
+      <li><a href="#插件" id="markdown-toc-插件">插件</a>        <ul>
+          <li><a href="#插件组管理" id="markdown-toc-插件组管理">插件组管理</a></li>
+        </ul>
+      </li>
+      <li><a href="#profile" id="markdown-toc-profile">profile</a></li>
+    </ul>
+  </li>
+  <li><a href="#进阶常用功能" id="markdown-toc-进阶常用功能">进阶常用功能</a>    <ul>
+      <li><a href="#跳过只跑某些测试" id="markdown-toc-跳过只跑某些测试">跳过/只跑某些测试</a></li>
+      <li><a href="#打大jar包" id="markdown-toc-打大jar包">打大jar包</a></li>
+      <li><a href="#指定项目打包的路径" id="markdown-toc-指定项目打包的路径">指定项目打包的路径</a></li>
+      <li><a href="#maven-dependency-plugin" id="markdown-toc-maven-dependency-plugin">maven-dependency-plugin</a></li>
+      <li><a href="#清理" id="markdown-toc-清理">清理</a></li>
+      <li><a href="#编译前检查" id="markdown-toc-编译前检查">编译前检查</a></li>
+      <li><a href="#toolchains待研究" id="markdown-toc-toolchains待研究">ToolChains(待研究)</a></li>
+    </ul>
+  </li>
+  <li><a href="#额外功能" id="markdown-toc-额外功能">额外功能</a>    <ul>
+      <li><a href="#anltr3集成" id="markdown-toc-anltr3集成">anltr3集成</a></li>
+      <li><a href="#thrift集成" id="markdown-toc-thrift集成">thrift集成</a></li>
+    </ul>
+  </li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<blockquote>
+  <p>pom.xml文件（以下简称pom）可以说是maven项目的核心所在，项目的测试，打包，发布都离不开在pom中使用相关插件进行配置，下面的内容主要按照实现Maven中的某一个功能进行讲解。</p>
+</blockquote>
+
+<h2 id="安装--配置-maven">安装 &amp; 配置 Maven</h2>
+
+<p>在安装Maven之前，请先确保本机安装了Java，并且设置了JAVA_HOME。关于Java的安装，可以参考<a href="http://myxof.github.io/2018/12/jdk-installer.html#java-home%E8%AE%BE%E7%BD%AE">这里</a>。</p>
+
+<p>Maven紫的安装不复杂，先去<a href="http://maven.apache.org/download.cgi">官网</a>下载对应的压缩包并解压。然后设置环境变量。</p>
+
+<h3 id="linux-osx">Linux/ OSX</h3>
+
+<p>去<code class="highlighter-rouge">/etc/profile</code>设置M2_HOME，记得用sudo权限</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export M2_HOME=/{Maven解压后的目录}
+export PATH=${M2_HOME}/bin:$PATH
+</code></pre></div></div>
+
+<blockquote>
+  <p>如果用了sudo还是提示没有写入权限，可以将profile先拷贝一份出来，修改开拷贝的文件，然后再覆盖/etc下的</p>
+</blockquote>
+
+<p>修改完之后记得<code class="highlighter-rouge">source /etc/profile</code>，之后执行<code class="highlighter-rouge">mvn -v</code>就可以看到设置成功了。</p>
+
+<h3 id="windows">Windows</h3>
+
+<p>和JAVA_HOME的设置基本相同：</p>
+
+<ol>
+  <li>
+    <p>右键<code class="highlighter-rouge">我的电脑</code>选择<code class="highlighter-rouge">属性</code>，然后在左边栏点击<code class="highlighter-rouge">高级系统设置</code>。</p>
+  </li>
+  <li>
+    <p>点击下方<code class="highlighter-rouge">环境变量</code>。</p>
+  </li>
+  <li>
+    <p>现在下方的<code class="highlighter-rouge">系统变量</code>中新建，变量名为<code class="highlighter-rouge">M2_HOME</code>，然后浏览目录，选择刚才Maven解压后的目录</p>
+  </li>
+  <li>
+    <p>添加完成之后，在上方的用户变量里面找到<code class="highlighter-rouge">Path</code>，点击<code class="highlighter-rouge">编辑</code>。</p>
+  </li>
+  <li>
+    <p>把<code class="highlighter-rouge">%M2_HOME%\bin</code>加入</p>
+  </li>
+  <li>
+    <p><strong>新启动</strong>一个命令行输入<code class="highlighter-rouge">mvn -v</code>查看是否生效。</p>
+  </li>
+</ol>
+
+<p>Maven安装完成之后，下面就正式开始讲解Maven的具体功能。</p>
+
+<h2 id="基本功能">基本功能</h2>
+
+<h3 id="项目结构">项目结构</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── src/main/java          # 工程源码
+├── src/main/resources     # 工程运行时所需的外部资源文件(数据集，图片)
+├── src/test/java          # 测试源码
+├── src/test/resources     # 测试代码所需的外部资源文件(数据集，图片)
+├── LICENSE                # 
+├── README.md              # 使用说明
+└── pom.xml                # 项目配置文件
+</code></pre></div></div>
+
+<h3 id="全局属性设置">全局属性设置</h3>
+
+<p>在Maven里面经常对于一些配置信息（例如，版本号）需要在文件里面重复用到，后续如果需要修改，则需要在文件里面进行多出修改，十分的麻烦。为了解决这个问题，可以在Maven里面设置<code class="highlighter-rouge">属性</code>。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;maven.compiler.source&gt;</span>1.8<span class="nt">&lt;/maven.compiler.source&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+</code></pre></div></div>
+
+<p>后续再用到<code class="highlighter-rouge">1.8</code>的时候，可以通过<code class="highlighter-rouge">${maven.compiler.source}</code>对其进行引用。这样，只要在上面修改了，下面的所有内容都会进行修改。</p>
+
+<h3 id="依赖引入">依赖引入</h3>
+
+<p>在开发项目的时候经常会用到外部的依赖，比如需要记录日志的地方就经常用到<a href="https://mvnrepository.com/artifact/ch.qos.logback/logback-classic">logback</a>，编写一些单元测试需要用到<a href="https://mvnrepository.com/artifact/org.mockito/mockito-all">mockito</a>。</p>
+
+<p>在没有maven的帮助下，需要去各自的官网下载对应的jar包，然后再手动加入到<code class="highlighter-rouge">classpath</code>中，十分的麻烦。有了maven之后，只需要去<a href="https://mvnrepository.com/">maven仓库</a>，搜索对应的依赖，然后把对应的<dependency>标签加入到pom文件里面即可，十分的方便。</dependency></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+	<span class="c">&lt;!-- Properties Management --&gt;</span>
+	<span class="nt">&lt;properties&gt;</span>
+		<span class="nt">&lt;logback.version&gt;</span>1.1.11<span class="nt">&lt;/logback.version&gt;</span>
+        <span class="nt">&lt;mockito.all.version&gt;</span>1.10.19<span class="nt">&lt;/mockito.all.version&gt;</span>
+	<span class="nt">&lt;/properties&gt;</span>
+	<span class="nt">&lt;dependencies&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>ch.qos.logback<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>logback-classic<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;version&gt;</span>${logback.version}<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.mockito<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>mockito-all<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;version&gt;</span>${mockito.all.version}<span class="nt">&lt;/version&gt;</span>
+			<span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+	<span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p>上面看到<code class="highlighter-rouge">mockito</code>的依赖里面有<code class="highlighter-rouge">&lt;scope&gt;test&lt;/scope&gt;</code>这样一行。表示<code class="highlighter-rouge">mockito</code>依赖只在测试阶段生效，在编译，打包阶段都不生效。具体含义下面细说。</p>
+
+<h3 id="常用命令">常用命令</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 清理上次构建时自动生成的文件
+$ mvn clean
+
+# 清理 + 编译项目代码，生成可以在JVM运行的.class文件
+$ mvn clean compile
+
+# 清理 + 编译 + 跑src/test/java下所有@Test标签的测试
+$ mvn clean test
+
+# 清理 + 编译 + 测试 + 将.class打包成可发布的形式(原文：distributable format, such as a JAR)
+$ mvn clean package
+
+# 跳过上面的测试阶段
+$ mvn clean package -Dmaven.test.skip=true
+
+# 清理 + 编译 + 测试 + 打包 + 将本项目安装到本地仓库，这样其他Maven项目就可以在pom里面用&lt;dependency/&gt;进行依赖
+$ mvn clean install
+</code></pre></div></div>
+
+<h3 id="小结">小结</h3>
+
+<p>看到这里，maven的基本用法已经学会了，就可以试着创建一个最简单的项目，在自己的IDE里面开发一个演示demo应该不是大问题了。下面会讲解maven提供的许多更高级的功能。</p>
+
+<h2 id="maven概念理解">Maven概念理解</h2>
+
+<h3 id="生命周期">生命周期</h3>
+
+<p>maven在执行的时候有一个<code class="highlighter-rouge">生命周期</code>的概念。maven里面的一共有三种生命周期，<code class="highlighter-rouge">default</code>，<code class="highlighter-rouge">clean</code>和<code class="highlighter-rouge">site</code>。下面如果没有特别说明，都是指<code class="highlighter-rouge">default</code>生命周期。</p>
+
+<p>在一个生命周期里面会分为为<strong>若干个执行顺序固定的阶段</strong>。下面列出部分（完整的可以看<a href="https://maven.apache.org/ref/3.6.0/maven-core/lifecycles.html">这里</a>），英文比较好懂，就不翻译了。</p>
+
+<ul>
+  <li>validate - validate the project is correct and all necessary information is available</li>
+  <li>compile - compile the source code of the project</li>
+  <li>test - test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed</li>
+  <li>package - take the compiled code and package it in its distributable format, such as a JAR.</li>
+  <li>verify - run any checks on results of integration tests to ensure quality criteria are met</li>
+  <li>install - install the package into the local repository, for use as a dependency in other projects locally</li>
+  <li>deploy - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.</li>
+</ul>
+
+<p>例如，执行<code class="highlighter-rouge">mvn clean package</code>的时候，就涉及两个生命周期，显示<code class="highlighter-rouge">clean</code>的生命周期，然后是<code class="highlighter-rouge">default</code>生命周期。<code class="highlighter-rouge">default</code>生命周期里面依次执行了<code class="highlighter-rouge">compile</code>,<code class="highlighter-rouge">test</code>和<code class="highlighter-rouge">package</code>（根据pom的配置不同，可能不止这三个，但这三个是肯定会按照这个顺序执行的）</p>
+
+<h3 id="父子模块">父/子模块</h3>
+
+<p>以iotdb项目为例，可以看到我们的项目结构是</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iotdb
+ |-- tsfile
+ |   `-- pom.xml
+ `-- pom.xml
+</code></pre></div></div>
+
+<p>根目录中pom文件</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+	<span class="nt">&lt;groupId&gt;</span>cn.edu.tsinghua<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>root<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>0.8.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+	<span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+
+	<span class="nt">&lt;name&gt;</span>IoTDB Root<span class="nt">&lt;/name&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p>tsfile项目中pom文件</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+    <span class="c">&lt;!--指定父项目--&gt;</span>
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>cn.edu.tsinghua<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>root<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>0.8.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
+    <span class="c">&lt;!--继承了父项目中的配置，groupId，version都不需要再指定了--&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>tsfile<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p>当然，如果二者的相对路径发生变化，比如结构变成了这样：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iotdb
+ |-- tsfile
+ |   `-- pom.xml
+ |-- root
+ |   `-- pom.xml
+</code></pre></div></div>
+<p>tsfile项目中pom文件需要修改<code class="highlighter-rouge">relativePath</code></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+    <span class="c">&lt;!--指定父项目--&gt;</span>
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>cn.edu.tsinghua<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>root<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>0.8.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;relativePath&gt;</span>../root/pom.xml<span class="nt">&lt;/relativePath&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
+    <span class="c">&lt;!--继承了父项目中的配置，groupId，version都不需要再指定了--&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>tsfile<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p>上述配置是让tsfile项目继承了root项目中的配置，但对于root项目而言，tsfile不是可见的。如果想让root知道自己有了这样一个子模块，需要在<code class="highlighter-rouge">modules</code>标签中定义子模块。这样就可以在根目录下操作各个子模块了。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+	<span class="nt">&lt;groupId&gt;</span>cn.edu.tsinghua<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>root<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>0.8.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+	<span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+
+	<span class="nt">&lt;name&gt;</span>IoTDB Root<span class="nt">&lt;/name&gt;</span>
+	<span class="nt">&lt;modules&gt;</span>
+		<span class="nt">&lt;module&gt;</span>tsfile<span class="nt">&lt;/module&gt;</span>
+	<span class="nt">&lt;/modules&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p>如果项目的结构是这样的，那么需要改写成<code class="highlighter-rouge">&lt;module&gt;../tsfile&lt;/module&gt;</code></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iotdb
+ |-- tsfile
+ |   `-- pom.xml
+ |-- root
+ |   `-- pom.xml
+</code></pre></div></div>
+
+<p>最后再提一句，maven里面内置了许多变量可以使用，最常用的就是<code class="highlighter-rouge">${project.basedir}</code>，可以表示当前项目所在的路径。</p>
+
+<h3 id="依赖">依赖</h3>
+
+<h4 id="注意事项">注意事项</h4>
+
+<p>从父项目到子项目，所有的依赖会转化为一张有向无环图，需要明确不能出现<code class="highlighter-rouge">循环依赖</code>。</p>
+
+<p>重复依赖的问题，假如有这样的依赖关系A -&gt; B -&gt; C -&gt; D 2.0 和 A -&gt; B -&gt; D 1.0，那么D被依赖的两次，maven会选择从根节点道路最短的那个，这里的话就会用D 1.0。如果道路长度一样，就根据谁先定义用谁的规则。最好避免重复依赖的问题，可以用<code class="highlighter-rouge">exclusions</code>实现。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>group.a<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>artifact.c<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+        <span class="c">&lt;!--让C不依赖D--&gt;</span>
+        <span class="nt">&lt;exclusions&gt;</span>
+            <span class="nt">&lt;exclusion&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>group.s<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>artifact.d<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;/exclusion&gt;</span>
+        <span class="nt">&lt;/exclusions&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<h4 id="依赖作用域">依赖作用域</h4>
+
+<p>从上面的生命周期了解到，在构建的过程中涉及多个阶段，依赖作用域<scopde>可以指定在哪些阶段依赖会生效，哪些不生效。</scopde></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>compile  -   默认作用域，编译，测试和运行阶段都生效，且具有传递性
+provided -   This is much like compile, but indicates you expect the JDK or a container to provide the dependency at runtime. 
+         -   For example, when building a web application for the Java Enterprise Edition, you would set the dependency on the Servlet API and related Java EE APIs to scope provided because the web container provides those classes. 
+         -   This scope is only available on the compilation and test classpath, and is not transitive.
+runtime  -   测试和运行阶段都生效，编译不生效
+test     -   只在测试运行阶段生效
+system   -   This scope is similar to provided except that you have to provide the JAR which contains it explicitly. 
+         -   The artifact is always available and is not looked up in a repository.
+import   -   This scope is only supported on a dependency of type pom in the &lt;dependencyManagement&gt; section. 
+         -   It indicates the dependency to be replaced with the effective list of dependencies in the specified POM's &lt;dependencyManagement&gt; section. 
+         -   Since they are replaced, dependencies with a scope of import do not actually participate in limiting the transitivity of a dependency.
+</code></pre></div></div>
+
+<h4 id="依赖组管理">依赖组管理</h4>
+
+<p>假设项目结构是这样的，其中A和B都需要依赖项目D，但对于D要求的版本却各自不同。那么通常的做法是，在A项目里面的加入包含D的<dependency>，指定对应的版本。在B项目里也加入对应的依赖，但是版本不同。</dependency></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root
+ |-- A
+ |   `-- pom.xml
+ |-- B
+ |   `-- pom.xml
+ |-- C
+ |   `-- pom.xml
+</code></pre></div></div>
+
+<p>基本上在A和B的代码基本相同，只是版本不同，为了避免写重复代码，可以在root下使用<dependencyManagement>进行统一定义和管理。</dependencyManagement></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--pom.xml in root--&gt;</span>
+<span class="nt">&lt;dependencyManagement&gt;</span>
+    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.apache.thrift<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>libthrift<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>0.9.3<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;exclusions&gt;</span>
+                <span class="nt">&lt;exclusion&gt;</span>
+                    <span class="nt">&lt;groupId&gt;</span>org.apache.httpcomponents<span class="nt">&lt;/groupId&gt;</span>
+                    <span class="nt">&lt;artifactId&gt;</span>httpclient<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;/exclusion&gt;</span>
+                <span class="nt">&lt;exclusion&gt;</span>
+                    <span class="nt">&lt;groupId&gt;</span>org.apache.httpcomponents<span class="nt">&lt;/groupId&gt;</span>
+                    <span class="nt">&lt;artifactId&gt;</span>httpcore<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;/exclusion&gt;</span>
+            <span class="nt">&lt;/exclusions&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/dependencyManagement&gt;</span>
+
+<span class="c">&lt;!--pom.xml in project A--&gt;</span>
+<span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.apache.thrift<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>libthrift<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+
+<span class="c">&lt;!--pom.xml in project B--&gt;</span>
+<span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.apache.thrift<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>libthrift<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>0.12.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</code></pre></div></div>
+
+<p>从上面可以发现，A和B项目通过引用父项目的依赖，自己定义变得更加简洁了，要<code class="highlighter-rouge">&lt;exclusions&gt;</code>的内容也只需要在父项目写一次。另外，假如还有一个和A，B项目平级的C项目，虽然root里面定义了要依赖<code class="highlighter-rouge">&lt;libthrift&gt;</code>，但是C项目如果不像A项目里面显示地声明，就不会依赖。</p>
+
+<p>最后还需要注意，子项目从父项目<code class="highlighter-rouge">&lt;/dependencyManagement&gt;</code>找到自己要的<code class="highlighter-rouge">&lt;dependency&gt;</code>的时候，需要靠{groupId, artifactId, type, classifier}四元组，一般只会靠{groupId, artifactId}二元组，这个时候从<code class="highlighter-rouge">&lt;dependency&gt;</code>继承过来的参数值就会设置为默认值。<code class="highlighter-rouge">type</code>就有可能设为<code class="highlighter-rouge">jar</code></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--root in pom.xml--&gt;</span>
+<span class="nt">&lt;project&gt;</span>
+  <span class="nt">&lt;dependencyManagement&gt;</span>
+    <span class="nt">&lt;dependencies&gt;</span>
+      <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>group-c<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>artifact-b<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>1.0<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;type&gt;</span>war<span class="nt">&lt;/type&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
+      <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+  <span class="nt">&lt;/dependencyManagement&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+
+<span class="c">&lt;!--Project A in pom.xml--&gt;</span>
+
+<span class="nt">&lt;project&gt;</span>
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>group-c<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>artifact-b<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="c">&lt;!--虽然父项目里面&lt;dependencyManagement&gt;已经声明了是war，但是这里还需要显示地再声明一次，不然就是&lt;type&gt;里面对应的就是默认值jar--&gt;</span>
+      <span class="nt">&lt;type&gt;</span>war<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>官网原话是：NOTE: In two of these dependency references, we had to specify the <type></type> element. This is because the minimal set of information for matching a dependency reference against a dependencyManagement section is actually {groupId, artifactId, type, classifier}. In many cases, these dependencies will refer to jar artifacts with no classifier. This allows us to shorthand the identity set to {groupId, artifactId}, since the default for the type field is jar, and the default classifier is null.</p>
+</blockquote>
+
+<h3 id="插件">插件</h3>
+
+<p>最上面说到了maven的生命周期和它所包含的若干个阶段，在每一个阶段中都会执行一些默认的操作，比如在package阶段会把compile后的.class文件打包成jar文件。在这个时候后如果想要增加一些额外的操作，比如，把项目打的jar包默认在target下，要想让它放到自己指定的某个位置。</p>
+
+<p>这个时候就需要用到maven提供的各种插件功能。</p>
+
+<p>在maven中的插件分为两类，一类是Build plugins，在<code class="highlighter-rouge">defaults</code>生命周期里面起作用，在<code class="highlighter-rouge">&lt;build/&gt;</code>配置。另外一类是Reporting plugins，在<code class="highlighter-rouge">site</code>生命周期里面起作用，在<code class="highlighter-rouge">&lt;reporting/&gt;</code>配置。下面没有特别说明，都是指Build plugins。</p>
+
+<p>对于一个plugin，它至少要有groupId, artifactId和version三个配置项。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project&gt;</span>
+  [...]
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>maven-dependency-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>3.1.1<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;executions&gt;</span>
+          <span class="nt">&lt;execution&gt;</span>
+            <span class="nt">&lt;id&gt;</span>copy-jar-dependency<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+            <span class="nt">&lt;goals&gt;</span>
+              <span class="nt">&lt;goal&gt;</span>copy-dependencies<span class="nt">&lt;/goal&gt;</span>
+            <span class="nt">&lt;/goals&gt;</span>
+            <span class="nt">&lt;configuration&gt;</span>
+              <span class="c">&lt;!-- configure the plugin here --&gt;</span>
+              <span class="nt">&lt;outputDirectory&gt;</span>${project.basedir}/lib<span class="nt">&lt;/outputDirectory&gt;</span>
+            <span class="nt">&lt;/configuration&gt;</span>
+          <span class="nt">&lt;/execution&gt;</span>
+        <span class="nt">&lt;/executions&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+  [...]
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p>然后就要说两个重要的概念<code class="highlighter-rouge">goal</code>和<code class="highlighter-rouge">phase</code>。</p>
+
+<p>在一个maven插件里面，他有许多子功能，例如在maven-dependency-plugin里面有下面的这些功能，当你引入一个插件的时候，你需要指定自己要用到哪些子功能，也就是<code class="highlighter-rouge">goal</code>。然后在<configuration>配置具体的信息。</configuration></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dependency:analyze analyzes the dependencies of this project and determines which are: used and declared; used and undeclared; unused and declared.
+dependency:copy-dependencies takes the list of project direct dependencies and optionally transitive dependencies and copies them to a specified location, stripping the version if desired. This goal can also be run from the command line.
+...
+dependency:unpack like copy but unpacks.
+dependency:unpack-dependencies like copy-dependencies but unpacks.
+</code></pre></div></div>
+
+<p>接下来是<code class="highlighter-rouge">phase</code>，这个表明<code class="highlighter-rouge">&lt;execution&gt;</code>里面的内容在哪个阶段会生效，<code class="highlighter-rouge">&lt;phase&gt;package&lt;/phase&gt;</code>表明在package阶段生效，也就是说<code class="highlighter-rouge">mvn package</code>的时候这个插件会执行。</p>
+
+<p>如果没有配置<code class="highlighter-rouge">phase</code>，那么就会设为默认值，如默认值果为空，那么在整个生命周期里面都不会执行。手动触发是：<code class="highlighter-rouge">mvn dependency:copy-dependencies</code>。maven插件通用的的触发方法是<code class="highlighter-rouge">mvn xxx:{goal}</code>，xxx是在<code class="highlighter-rouge">&lt;artifactId&gt;maven-xxx-plugin&lt;/artifactId&gt;</code>或者<code class="highlighter-rouge">&lt;artifactId&gt;xxx-maven-plugin&lt;/artifactId&gt;</code>这里定义的。</p>
+
+<p>最后再提醒一点就是<code class="highlighter-rouge">&lt;execution&gt;</code>里面有一个<code class="highlighter-rouge">&lt;id&gt;</code>，这个是用户自定义的，没有特别的含义，但是需要保证在<code class="highlighter-rouge">&lt;executions&gt;</code>里面是唯一的，但不要求各个插件之间唯一的。</p>
+
+<h4 id="插件组管理">插件组管理</h4>
+
+<p>用法和依赖组管理基本相同，这里不再赘述。</p>
+
+<p>需要注意的是，<code class="highlighter-rouge">dependencies</code> 和<code class="highlighter-rouge">dependencyManagemen</code>均是<code class="highlighter-rouge">project</code>下的直接子元素，但是<code class="highlighter-rouge">plugins</code>和<code class="highlighter-rouge">pluginManagement</code>却是<code class="highlighter-rouge">project</code>下<code class="highlighter-rouge">build</code>的直接子元素。</p>
+
+<h3 id="profile">profile</h3>
+
+<p>profile的出现主要是为了解决跨平台兼容性的问题。比如要用thrift生成代码，但是在windows和linux/macos上面生成的命令不相同，需要分情况来写。那么首先需要判断在那个环境里面，然后再执行对应的命令。profile相当于提供了switch(your condition) case1/case2…的功能。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;jdk&gt;</span>[1.3,1.6)<span class="nt">&lt;/jdk&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+
+<p>上面的例子就是检测系统jdk环境在[1.3,1.6)之间，然后出发自定义的操作。</p>
+
+<p>下面举一个例子，根据不同操作系统来实现当前项目文件结构，在linux，osx上用的是ls命令，Windows上用的是dir命令。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project&gt;</span>
+	<span class="nt">&lt;profiles&gt;</span>
+		<span class="nt">&lt;profile&gt;</span>
+			<span class="nt">&lt;id&gt;</span>windows<span class="nt">&lt;/id&gt;</span>
+			<span class="nt">&lt;activation&gt;</span>
+				<span class="nt">&lt;os&gt;</span>
+					<span class="nt">&lt;family&gt;</span>windows<span class="nt">&lt;/family&gt;</span>
+				<span class="nt">&lt;/os&gt;</span>
+			<span class="nt">&lt;/activation&gt;</span>
+			<span class="nt">&lt;properties&gt;</span>
+				<span class="nt">&lt;cmd.executable&gt;</span>echo<span class="nt">&lt;/cmd.executable&gt;</span>
+			<span class="nt">&lt;/properties&gt;</span>
+		<span class="nt">&lt;/profile&gt;</span>
+		<span class="nt">&lt;profile&gt;</span>
+			<span class="nt">&lt;id&gt;</span>unix<span class="nt">&lt;/id&gt;</span>
+			<span class="nt">&lt;activation&gt;</span>
+				<span class="nt">&lt;os&gt;</span>
+					<span class="nt">&lt;family&gt;</span>unix<span class="nt">&lt;/family&gt;</span>
+				<span class="nt">&lt;/os&gt;</span>
+			<span class="nt">&lt;/activation&gt;</span>
+			<span class="nt">&lt;properties&gt;</span>
+				<span class="nt">&lt;cmd.executable&gt;</span>ls<span class="nt">&lt;/cmd.executable&gt;</span>
+			<span class="nt">&lt;/properties&gt;</span>
+		<span class="nt">&lt;/profile&gt;</span>
+		<span class="nt">&lt;profile&gt;</span>
+			<span class="nt">&lt;id&gt;</span>mac<span class="nt">&lt;/id&gt;</span>
+			<span class="nt">&lt;activation&gt;</span>
+				<span class="nt">&lt;os&gt;</span>
+					<span class="nt">&lt;family&gt;</span>mac<span class="nt">&lt;/family&gt;</span>
+				<span class="nt">&lt;/os&gt;</span>
+			<span class="nt">&lt;/activation&gt;</span>
+			<span class="nt">&lt;properties&gt;</span>
+				<span class="nt">&lt;cmd.executable&gt;</span>ls<span class="nt">&lt;/cmd.executable&gt;</span>
+			<span class="nt">&lt;/properties&gt;</span>
+		<span class="nt">&lt;/profile&gt;</span>
+		<span class="nt">&lt;profile&gt;</span>
+			<span class="nt">&lt;id&gt;</span>show-dir<span class="nt">&lt;/id&gt;</span>
+			<span class="nt">&lt;activation&gt;</span>
+				<span class="nt">&lt;file&gt;</span>
+					<span class="nt">&lt;exists&gt;</span>src/main/java<span class="nt">&lt;/exists&gt;</span>
+				<span class="nt">&lt;/file&gt;</span>
+			<span class="nt">&lt;/activation&gt;</span>
+			<span class="nt">&lt;build&gt;</span>
+				<span class="nt">&lt;plugins&gt;</span>
+					<span class="nt">&lt;plugin&gt;</span>
+						<span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
+						<span class="nt">&lt;artifactId&gt;</span>exec-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+						<span class="nt">&lt;version&gt;</span>1.6.0<span class="nt">&lt;/version&gt;</span>
+						<span class="nt">&lt;executions&gt;</span>
+							<span class="nt">&lt;execution&gt;</span>
+								<span class="nt">&lt;id&gt;</span>executable-executable<span class="nt">&lt;/id&gt;</span>
+								<span class="nt">&lt;phase&gt;</span>generate-sources<span class="nt">&lt;/phase&gt;</span>
+								<span class="nt">&lt;goals&gt;</span>
+									<span class="nt">&lt;goal&gt;</span>exec<span class="nt">&lt;/goal&gt;</span>
+								<span class="nt">&lt;/goals&gt;</span>
+								<span class="nt">&lt;configuration&gt;</span>
+									<span class="nt">&lt;executable&gt;</span>${cmd.executable}<span class="nt">&lt;/executable&gt;</span>
+								<span class="nt">&lt;/configuration&gt;</span>
+							<span class="nt">&lt;/execution&gt;</span>
+						<span class="nt">&lt;/executions&gt;</span>
+					<span class="nt">&lt;/plugin&gt;</span>
+				<span class="nt">&lt;/plugins&gt;</span>
+			<span class="nt">&lt;/build&gt;</span>
+		<span class="nt">&lt;/profile&gt;</span>
+	<span class="nt">&lt;/profiles&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<h2 id="进阶常用功能">进阶常用功能</h2>
+
+<h3 id="跳过只跑某些测试">跳过/只跑某些测试</h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project&gt;</span>
+	<span class="nt">&lt;properties&gt;</span>
+		<span class="nt">&lt;test.excludes&gt;</span>**/*ExcludeTest.java<span class="nt">&lt;/test.excludes&gt;</span>
+		<span class="nt">&lt;test.includes&gt;</span>**/*IncludeTest.java<span class="nt">&lt;/test.includes&gt;</span>
+	<span class="nt">&lt;/properties&gt;</span>
+  [...]
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>maven-surefire-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>3.0.0-M3<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;configuration&gt;</span>
+            <span class="c">&lt;!--按照英文字母顺序跑测试--&gt;</span>
+            <span class="nt">&lt;runOrder&gt;</span>alphabetical<span class="nt">&lt;/runOrder&gt;</span>
+            <span class="c">&lt;!--设置为true就不跑测试，下面的模块不生效--&gt;</span>
+            <span class="nt">&lt;skipTests&gt;</span>false<span class="nt">&lt;/skipTests&gt;</span>
+            <span class="nt">&lt;excludes&gt;</span>
+                <span class="nt">&lt;exclude&gt;</span>${test.excludes}<span class="nt">&lt;/exclude&gt;</span>
+            <span class="nt">&lt;/excludes&gt;</span>
+            <span class="nt">&lt;includes&gt;</span>
+                <span class="nt">&lt;include&gt;</span>${test.includes}<span class="nt">&lt;/include&gt;</span>
+            <span class="nt">&lt;/includes&gt;</span>
+        <span class="nt">&lt;/configuration&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+  [...]
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<p>然后在在命令行里面输入：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 只跑MyTest开头的Java文件中的测试
+$ mvn clean test -Dtest.includes=**/MyTest*.java
+
+# 以MyTest开头的Java文件中的测试都不跑
+$ mvn clean test -Dtest.exclude=**/MyTest*.java
+</code></pre></div></div>
+
+<h3 id="打大jar包">打大jar包</h3>
+
+<p>有些时候，需要把自己的项目和依赖的外部项目合在一起变成一个jar包提供给别人，虽然不推荐这样做，姑且还是说下怎么做。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+          <span class="nt">&lt;plugin&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>maven-assembly-plugin<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;configuration&gt;</span>
+              <span class="nt">&lt;descriptorRefs&gt;</span>
+                <span class="nt">&lt;descriptorRef&gt;</span>jar-with-dependencies<span class="nt">&lt;/descriptorRef&gt;</span>
+              <span class="nt">&lt;/descriptorRefs&gt;</span>
+            <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;executions&gt;</span>
+              <span class="nt">&lt;execution&gt;</span>
+                <span class="nt">&lt;id&gt;</span>make-assembly<span class="nt">&lt;/id&gt;</span>
+                <span class="c">&lt;!-- this is used for inheritance merges --&gt;</span>
+                <span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+                <span class="c">&lt;!-- bind to the packaging phase --&gt;</span>
+                <span class="nt">&lt;goals&gt;</span>
+                  <span class="nt">&lt;goal&gt;</span>single<span class="nt">&lt;/goal&gt;</span>
+                <span class="nt">&lt;/goals&gt;</span>
+              <span class="nt">&lt;/execution&gt;</span>
+            <span class="nt">&lt;/executions&gt;</span>
+          <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div></div>
+
+<h3 id="指定项目打包的路径">指定项目打包的路径</h3>
+
+<p>默认一个项目的jar包会生成在target目录下，如果想要更改生成路径，可以用<code class="highlighter-rouge">maven-jar-plugin</code>。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;plugin&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;configuration&gt;</span>
+        <span class="nt">&lt;outputDirectory&gt;</span>/your/path/xxx<span class="nt">&lt;/outputDirectory&gt;</span>
+    <span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div></div>
+
+<h3 id="maven-dependency-plugin">maven-dependency-plugin</h3>
+
+<p>这个是比较常用的一种插件，功能比较多，这里先介绍<code class="highlighter-rouge">copy-dependencies</code>这个子功能。<code class="highlighter-rouge">copy-dependencies</code>能够在对项目的依赖进行操作，顾名思义，就是把依赖考拷贝到指定的某个地方。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;plugin&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>maven-dependency-plugin<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;executions&gt;</span>
+        <span class="nt">&lt;execution&gt;</span>
+            <span class="nt">&lt;id&gt;</span>copy-dependencies<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+            <span class="nt">&lt;goals&gt;</span>
+                <span class="nt">&lt;goal&gt;</span>copy-dependencies<span class="nt">&lt;/goal&gt;</span>
+            <span class="nt">&lt;/goals&gt;</span>
+            <span class="nt">&lt;configuration&gt;</span>
+                <span class="nt">&lt;outputDirectory&gt;</span>/your/path/xxx<span class="nt">&lt;/outputDirectory&gt;</span>
+            <span class="nt">&lt;/configuration&gt;</span>
+        <span class="nt">&lt;/execution&gt;</span>
+    <span class="nt">&lt;/executions&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div></div>
+
+<h3 id="清理">清理</h3>
+
+<p>在<code class="highlighter-rouge">clean</code>生命周期里，除了对maven生成的文件进行清理以外，还可以对自定义的文件进行清理</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;plugin&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>maven-clean-plugin<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;configuration&gt;</span>
+        <span class="nt">&lt;filesets&gt;</span>
+            <span class="nt">&lt;fileset&gt;</span>
+                <span class="nt">&lt;directory&gt;</span>/your/path/xxx<span class="nt">&lt;/directory&gt;</span>
+                <span class="nt">&lt;includes&gt;</span>
+                    <span class="nt">&lt;include&gt;</span>**/*.jar<span class="nt">&lt;/include&gt;</span>
+                <span class="nt">&lt;/includes&gt;</span>
+            <span class="nt">&lt;/fileset&gt;</span>
+        <span class="nt">&lt;/filesets&gt;</span>
+    <span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div></div>
+
+<h3 id="编译前检查">编译前检查</h3>
+
+<p>在<code class="highlighter-rouge">default</code>生命周期里面第一个执行的阶段是<code class="highlighter-rouge">validate</code>，这里会做一些检查。比如检查jdk版本是否满足要求等。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;plugin&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>maven-enforcer-plugin<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>3.0.0-M1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;executions&gt;</span>
+        <span class="nt">&lt;execution&gt;</span>
+            <span class="nt">&lt;id&gt;</span>vulnerability-checks<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;phase&gt;</span>validate<span class="nt">&lt;/phase&gt;</span>
+            <span class="nt">&lt;goals&gt;</span>
+                <span class="nt">&lt;goal&gt;</span>enforce<span class="nt">&lt;/goal&gt;</span>
+            <span class="nt">&lt;/goals&gt;</span>
+            <span class="nt">&lt;configuration&gt;</span>
+                <span class="c">&lt;!--jdk&lt;1.8的话，停止后续操作，设为false的话输出警告信息--&gt;</span>
+                <span class="nt">&lt;fail&gt;</span>true<span class="nt">&lt;/fail&gt;</span>
+                <span class="nt">&lt;rules&gt;</span>
+                    <span class="nt">&lt;requireJavaVersion&gt;</span>
+                        <span class="nt">&lt;version&gt;</span>1.8.0<span class="nt">&lt;/version&gt;</span>
+                    <span class="nt">&lt;/requireJavaVersion&gt;</span>
+                <span class="nt">&lt;/rules&gt;</span>
+            <span class="nt">&lt;/configuration&gt;</span>
+        <span class="nt">&lt;/execution&gt;</span>
+    <span class="nt">&lt;/executions&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div></div>
+
+<h3 id="toolchains待研究">ToolChains(待研究)</h3>
+
+<h2 id="额外功能">额外功能</h2>
+
+<h3 id="anltr3集成">anltr3集成</h3>
+
+<p>在src/main/antlr3/xxx文件夹下放置词法和语法文件，xxx是词法文件里面定义的要生成的package路径，pom里面加入下面的配置，在<code class="highlighter-rouge">generate-sources</code>阶段会在<code class="highlighter-rouge">target/generate-sources/antlr3</code>目录下生成编译后的java文件</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project&gt;</span>
+	<span class="nt">&lt;properties&gt;</span>
+		<span class="nt">&lt;antlr3.version&gt;</span>3.5.2<span class="nt">&lt;/antlr3.version&gt;</span>
+	<span class="nt">&lt;/properties&gt;</span>
+
+	<span class="nt">&lt;dependencies&gt;</span>
+		<span class="c">&lt;!-- https://mvnrepository.com/artifact/org.antlr/antlr-runtime --&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+		    <span class="nt">&lt;groupId&gt;</span>org.antlr<span class="nt">&lt;/groupId&gt;</span>
+		    <span class="nt">&lt;artifactId&gt;</span>antlr-runtime<span class="nt">&lt;/artifactId&gt;</span>
+		    <span class="nt">&lt;version&gt;</span>${antlr3.version}<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+	<span class="nt">&lt;/dependencies&gt;</span>
+	<span class="nt">&lt;build&gt;</span>
+		<span class="nt">&lt;plugins&gt;</span>
+			<span class="nt">&lt;plugin&gt;</span>
+				<span class="nt">&lt;groupId&gt;</span>org.antlr<span class="nt">&lt;/groupId&gt;</span>
+				<span class="nt">&lt;artifactId&gt;</span>antlr3-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+				<span class="nt">&lt;version&gt;</span>${antlr3.version}<span class="nt">&lt;/version&gt;</span>
+				<span class="nt">&lt;executions&gt;</span>
+					<span class="nt">&lt;execution&gt;</span>
+						<span class="nt">&lt;goals&gt;</span>
+							<span class="nt">&lt;goal&gt;</span>antlr<span class="nt">&lt;/goal&gt;</span>
+						<span class="nt">&lt;/goals&gt;</span>
+					<span class="nt">&lt;/execution&gt;</span>
+				<span class="nt">&lt;/executions&gt;</span>
+			<span class="nt">&lt;/plugin&gt;</span>
+		<span class="nt">&lt;/plugins&gt;</span>
+	<span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<h3 id="thrift集成">thrift集成</h3>
+
+<p>仅以linux系统为例，更多可以参考root目录下的pom文件</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project&gt;</span>
+	<span class="nt">&lt;profiles&gt;</span>
+		<span class="nt">&lt;profile&gt;</span>
+			<span class="nt">&lt;id&gt;</span>unix<span class="nt">&lt;/id&gt;</span>
+			<span class="nt">&lt;activation&gt;</span>
+			    <span class="c">&lt;!--操作系统为unix的时候触发--&gt;</span>
+				<span class="nt">&lt;os&gt;</span>
+					<span class="nt">&lt;family&gt;</span>unix<span class="nt">&lt;/family&gt;</span>
+				<span class="nt">&lt;/os&gt;</span>
+			<span class="nt">&lt;/activation&gt;</span>
+			<span class="nt">&lt;properties&gt;</span>
+			    <span class="c">&lt;!--下载文件地址--&gt;</span>
+				<span class="nt">&lt;thrift.download-url&gt;</span>https://github.com/ccascone/mvn-thrift-compiler/raw/1.0_${thrift.version}/exe/thrift-linux-x86_64.exe<span class="nt">&lt;/thrift.download-url&gt;</span>
+				<span class="c">&lt;!--下载文件后进行重命名--&gt;</span>
+				<span class="nt">&lt;thrift.executable&gt;</span>thrift-${thrift.version}-unix-x86_64<span class="nt">&lt;/thrift.executable&gt;</span>
+				<span class="c">&lt;!--不跳过下面的命令--&gt;</span>
+				<span class="nt">&lt;thrift.skip-making-executable&gt;</span>false<span class="nt">&lt;/thrift.skip-making-executable&gt;</span>
+				<span class="c">&lt;!--赋予可执行权限--&gt;</span>
+				<span class="nt">&lt;thrift.exec-cmd.executable&gt;</span>chmod<span class="nt">&lt;/thrift.exec-cmd.executable&gt;</span>
+				<span class="c">&lt;!--赋予可执行权限命令的参数--&gt;</span>
+				<span class="nt">&lt;thrift.exec-cmd.args&gt;</span>+x ${project.build.directory}/tools/${thrift.executable}<span class="nt">&lt;/thrift.exec-cmd.args&gt;</span>
+			<span class="nt">&lt;/properties&gt;</span>
+		<span class="nt">&lt;/profile&gt;</span>
+		<span class="nt">&lt;profile&gt;</span>
+			<span class="nt">&lt;id&gt;</span>thrift-generation<span class="nt">&lt;/id&gt;</span>
+			<span class="nt">&lt;activation&gt;</span>
+			    <span class="c">&lt;!--下面目录存在的时候触发--&gt;</span>
+				<span class="nt">&lt;file&gt;</span>
+					<span class="nt">&lt;exists&gt;</span>src/main/thrift<span class="nt">&lt;/exists&gt;</span>
+				<span class="nt">&lt;/file&gt;</span>
+			<span class="nt">&lt;/activation&gt;</span>
+			<span class="nt">&lt;build&gt;</span>
+				<span class="nt">&lt;plugins&gt;</span>
+					<span class="nt">&lt;plugin&gt;</span>
+					    <span class="c">&lt;!--去下载定义的thrift工具--&gt;</span>
+						<span class="nt">&lt;groupId&gt;</span>com.googlecode.maven-download-plugin<span class="nt">&lt;/groupId&gt;</span>
+						<span class="nt">&lt;artifactId&gt;</span>download-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+						<span class="nt">&lt;version&gt;</span>1.4.0<span class="nt">&lt;/version&gt;</span>
+						<span class="nt">&lt;executions&gt;</span>
+							<span class="nt">&lt;execution&gt;</span>
+								<span class="nt">&lt;id&gt;</span>get-thrift-executable<span class="nt">&lt;/id&gt;</span>
+								<span class="nt">&lt;phase&gt;</span>generate-sources<span class="nt">&lt;/phase&gt;</span>
+								<span class="nt">&lt;goals&gt;</span>
+									<span class="nt">&lt;goal&gt;</span>wget<span class="nt">&lt;/goal&gt;</span>
+								<span class="nt">&lt;/goals&gt;</span>
+								<span class="nt">&lt;configuration&gt;</span>
+									<span class="nt">&lt;url&gt;</span>${thrift.download-url}<span class="nt">&lt;/url&gt;</span>
+									<span class="nt">&lt;outputDirectory&gt;</span>${project.build.directory}/tools<span class="nt">&lt;/outputDirectory&gt;</span>
+									<span class="nt">&lt;outputFileName&gt;</span>${thrift.executable}<span class="nt">&lt;/outputFileName&gt;</span>
+								<span class="nt">&lt;/configuration&gt;</span>
+							<span class="nt">&lt;/execution&gt;</span>
+						<span class="nt">&lt;/executions&gt;</span>
+					<span class="nt">&lt;/plugin&gt;</span>
+					<span class="c">&lt;!--执行修改权限的命令--&gt;</span>
+					<span class="nt">&lt;plugin&gt;</span>
+						<span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
+						<span class="nt">&lt;artifactId&gt;</span>exec-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+						<span class="nt">&lt;version&gt;</span>1.6.0<span class="nt">&lt;/version&gt;</span>
+						<span class="nt">&lt;executions&gt;</span>
+							<span class="nt">&lt;execution&gt;</span>
+								<span class="nt">&lt;id&gt;</span>make-thrift-executable-executable<span class="nt">&lt;/id&gt;</span>
+								<span class="nt">&lt;phase&gt;</span>generate-sources<span class="nt">&lt;/phase&gt;</span>
+								<span class="nt">&lt;goals&gt;</span>
+									<span class="nt">&lt;goal&gt;</span>exec<span class="nt">&lt;/goal&gt;</span>
+								<span class="nt">&lt;/goals&gt;</span>
+								<span class="nt">&lt;configuration&gt;</span>
+									<span class="nt">&lt;skip&gt;</span>${thrift.skip-making-executable}<span class="nt">&lt;/skip&gt;</span>
+									<span class="nt">&lt;executable&gt;</span>${thrift.exec-cmd.executable}<span class="nt">&lt;/executable&gt;</span>
+									<span class="nt">&lt;commandlineArgs&gt;</span>${thrift.exec-cmd.args}<span class="nt">&lt;/commandlineArgs&gt;</span>
+								<span class="nt">&lt;/configuration&gt;</span>
+							<span class="nt">&lt;/execution&gt;</span>
+						<span class="nt">&lt;/executions&gt;</span>
+					<span class="nt">&lt;/plugin&gt;</span>
+					<span class="c">&lt;!--用刚才下载的thrift工具生成java代码--&gt;</span>
+					<span class="nt">&lt;plugin&gt;</span>
+						<span class="nt">&lt;groupId&gt;</span>org.apache.thrift.tools<span class="nt">&lt;/groupId&gt;</span>
+						<span class="nt">&lt;artifactId&gt;</span>maven-thrift-plugin<span class="nt">&lt;/artifactId&gt;</span>
+						<span class="nt">&lt;version&gt;</span>0.1.11<span class="nt">&lt;/version&gt;</span>
+						<span class="nt">&lt;executions&gt;</span>
+							<span class="nt">&lt;execution&gt;</span>
+								<span class="nt">&lt;id&gt;</span>generate-thrift-sources<span class="nt">&lt;/id&gt;</span>
+								<span class="nt">&lt;phase&gt;</span>generate-sources<span class="nt">&lt;/phase&gt;</span>
+								<span class="nt">&lt;goals&gt;</span>
+									<span class="nt">&lt;goal&gt;</span>compile<span class="nt">&lt;/goal&gt;</span>
+								<span class="nt">&lt;/goals&gt;</span>
+								<span class="nt">&lt;configuration&gt;</span>
+									<span class="nt">&lt;generator&gt;</span>java<span class="nt">&lt;/generator&gt;</span>
+									<span class="nt">&lt;thriftExecutable&gt;</span>${project.build.directory}/tools/${thrift.executable}<span class="nt">&lt;/thriftExecutable&gt;</span>
+									<span class="nt">&lt;thriftSourceRoot&gt;</span>${basedir}/src/main/thrift<span class="nt">&lt;/thriftSourceRoot&gt;</span>
+								<span class="nt">&lt;/configuration&gt;</span>
+							<span class="nt">&lt;/execution&gt;</span>
+						<span class="nt">&lt;/executions&gt;</span>
+					<span class="nt">&lt;/plugin&gt;</span>
+				<span class="nt">&lt;/plugins&gt;</span>
+			<span class="nt">&lt;/build&gt;</span>
+		<span class="nt">&lt;/profile&gt;</span>
+	<span class="nt">&lt;/profiles&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<h2 id="参考">参考</h2>
+
+<ul>
+  <li><a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html">Introduction to the Build Lifecycle</a></li>
+  <li><a href="https://maven.apache.org/guides/introduction/introduction-to-the-pom.html">Introduction to the POM</a></li>
+  <li><a href="https://maven.apache.org/guides/introduction/introduction-to-profiles.html">Introduction to Build Profiles</a></li>
+  <li><a href="https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html">Introduction to the Standard Directory Layout</a></li>
+  <li><a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html">Introduction to the Dependency Mechanism</a></li>
+  <li>https://blog.csdn.net/liupeifeng3514/article/details/80236827</li>
+  <li><a href="http://maven.apache.org/ref/3.6.0/maven-core/lifecycles.html">life cycles</a></li>
+  <li><a href="http://maven.apache.org/guides/mini/guide-configuring-plugins.html">Guide to Configuring Plug-ins</a></li>
+</ul>
+
+  </div>
+
+  <script src="https://unpkg.com/vanilla-back-to-top@7.2.0/dist/vanilla-back-to-top.min.js"></script>
+  <script>addBackToTop({
+    backgroundColor: '#fff',
+    innerHTML: 'Back to Top',
+    textColor: '#333'
+  })</script>
+  <style>
+    #back-to-top {
+      border: 1px solid #ccc;
+      border-radius: 0;
+      font-family: sans-serif;
+      font-size: 14px;
+      width: 100px;
+      text-align: center;
+      line-height: 30px;
+      height: 30px;
+    }
+  </style><a class="u-url" href="/2019/01/pom.html" hidden></a>
+</article>
+
+    </div>
+</main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">MYXOF的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">MYXOF的博客</li><li><a class="u-email" href="mailto:xuyithuss@126.com">xuyithuss@126.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/MyXOF"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">MyXOF</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Copyright © 2018 MYXOF. All Right Reserved.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

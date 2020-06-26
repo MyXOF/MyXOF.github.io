@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>JDK安装方法汇总 | MYXOF的博客</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="JDK安装方法汇总" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="（更新中…）." />
+<meta property="og:description" content="（更新中…）." />
+<link rel="canonical" href="http://localhost:4000/2018/12/jdk-installer.html" />
+<meta property="og:url" content="http://localhost:4000/2018/12/jdk-installer.html" />
+<meta property="og:site_name" content="MYXOF的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-12-26T00:00:00+08:00" />
+<script type="application/ld+json">
+{"description":"（更新中…）.","@type":"BlogPosting","url":"http://localhost:4000/2018/12/jdk-installer.html","headline":"JDK安装方法汇总","dateModified":"2019-01-04T21:09:24+08:00","datePublished":"2018-12-26T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/12/jdk-installer.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="MYXOF的博客" /></head>
+<body><header class="site-header" role="banner">
+
+    <div class="wrapper">
+
+        <a class="site-title" href="/">MYXOF的博客</a>
+
+        <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+            <div class="trigger">
+                <!--
+                    my_page.autogen is populated by the pagination logic for all pages
+                                    that are automatically created by the gem. Check for non-existence to exclude pagination pages from site.pages iterators
+                  -->
+
+                
+                
+                
+                
+                <a class="page-link" href="/about/">关于</a>
+                
+                
+                
+                <a class="page-link" href="/amusement/">娱乐</a>
+                
+                
+                
+                <a class="page-link" href="/research/">研究</a>
+                
+                
+                
+                <a class="page-link" href="/skills/">技巧</a>
+                
+                
+                
+                <a class="page-link" href="/japanese/">日本語の勉強</a>
+                
+                
+                
+                <a class="page-link" href="/books/">书单</a>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+
+    </div>
+
+</header>
+<main class="page-content" aria-label="Content">
+    <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">JDK安装方法汇总</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-12-26T00:00:00+08:00" itemprop="datePublished">
+        <!---->
+        <!--Dec 26, 2018-->
+        最后修改于 Jan 4, 2019 | 共计148字 | 转载请注明出处
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="markdown-toc">
+  <li><a href="#jdk-11" id="markdown-toc-jdk-11">JDK 11</a>    <ul>
+      <li><a href="#ubuntu" id="markdown-toc-ubuntu">Ubuntu</a></li>
+      <li><a href="#osxwin10" id="markdown-toc-osxwin10">OSX/Win10</a></li>
+    </ul>
+  </li>
+  <li><a href="#java-home设置" id="markdown-toc-java-home设置">Java Home设置</a>    <ul>
+      <li><a href="#linuxos-x" id="markdown-toc-linuxos-x">Linux/OS X</a></li>
+      <li><a href="#win10" id="markdown-toc-win10">Win10</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="jdk-11">JDK 11</h2>
+
+<h3 id="ubuntu">Ubuntu</h3>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>add-apt-repository ppa:linuxuprising/java
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>oracle-java11-installer
+
+<span class="c"># 查看Java版本</span>
+java <span class="nt">-version</span></code></pre></figure>
+
+<h3 id="osxwin10">OSX/Win10</h3>
+
+<p>直接去<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html">官网</a>下载对应的dmg/exe文件安装即可。</p>
+
+<h2 id="java-home设置">Java Home设置</h2>
+
+<h3 id="linuxos-x">Linux/OS X</h3>
+
+<p>去<code class="highlighter-rouge">/etc/profile</code>设置JAVA_HOME，记得用sudo权限</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c"># OSX的JAVA安装目录一般在 /Library/Java/JavaVirtualMachines/{jdk版本}/Contents/Home</span>
+<span class="c"># Linux的安装目录一般在 /usr/lib/jvm/{jdk版本}</span>
+<span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/<span class="o">{</span>JAVA安装目录<span class="o">}</span>
+<span class="nb">export </span><span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/lib
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="k">${</span><span class="nv">JAVA_HOME</span><span class="k">}</span>/bin:<span class="nv">$PATH</span></code></pre></figure>
+
+<blockquote>
+  <p>如果用了sudo还是提示没有写入权限，可以将profile先拷贝一份出来，修改开拷贝的文件，然后再覆盖/etc下的</p>
+</blockquote>
+
+<p>修改完之后记得<code class="highlighter-rouge">source /etc/profile</code>，之后执行<code class="highlighter-rouge">java -version</code>就可以看到设置成功了。</p>
+
+<h3 id="win10">Win10</h3>
+
+<ol>
+  <li>
+    <p>右键<code class="highlighter-rouge">我的电脑</code>选择<code class="highlighter-rouge">属性</code>，然后在左边栏点击<code class="highlighter-rouge">高级系统设置</code>。</p>
+  </li>
+  <li>
+    <p>点击下方<code class="highlighter-rouge">环境变量</code>。</p>
+  </li>
+  <li>
+    <p>现在下方的<code class="highlighter-rouge">系统变量</code>中新建，变量名为<code class="highlighter-rouge">JAVA_HOME</code>，然后浏览目录，JAVA的安装路径一般在<code class="highlighter-rouge">C:\Program Files\Java\jdkXXX</code>的位置</p>
+  </li>
+  <li>
+    <p>添加完成之后，在上方的用户变量里面找到<code class="highlighter-rouge">Path</code>，点击<code class="highlighter-rouge">编辑</code>。</p>
+  </li>
+  <li>
+    <p>把<code class="highlighter-rouge">%JAVA_HOME%\bin</code>加入</p>
+  </li>
+  <li>
+    <p><strong>新启动</strong>一个命令行输入<code class="highlighter-rouge">java -version</code>查看是否生效。</p>
+  </li>
+</ol>
+
+
+  </div>
+
+  <script src="https://unpkg.com/vanilla-back-to-top@7.2.0/dist/vanilla-back-to-top.min.js"></script>
+  <script>addBackToTop({
+    backgroundColor: '#fff',
+    innerHTML: 'Back to Top',
+    textColor: '#333'
+  })</script>
+  <style>
+    #back-to-top {
+      border: 1px solid #ccc;
+      border-radius: 0;
+      font-family: sans-serif;
+      font-size: 14px;
+      width: 100px;
+      text-align: center;
+      line-height: 30px;
+      height: 30px;
+    }
+  </style><a class="u-url" href="/2018/12/jdk-installer.html" hidden></a>
+</article>
+
+    </div>
+</main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">MYXOF的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">MYXOF的博客</li><li><a class="u-email" href="mailto:xuyithuss@126.com">xuyithuss@126.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/MyXOF"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">MyXOF</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Copyright © 2018 MYXOF. All Right Reserved.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

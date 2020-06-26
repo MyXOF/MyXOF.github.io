@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Jeklly使用心得总结 | MYXOF的博客</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Jeklly使用心得总结" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="（更新中…）." />
+<meta property="og:description" content="（更新中…）." />
+<link rel="canonical" href="http://localhost:4000/2018/12/jeklly.html" />
+<meta property="og:url" content="http://localhost:4000/2018/12/jeklly.html" />
+<meta property="og:site_name" content="MYXOF的博客" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-12-22T00:00:00+08:00" />
+<script type="application/ld+json">
+{"description":"（更新中…）.","@type":"BlogPosting","url":"http://localhost:4000/2018/12/jeklly.html","headline":"Jeklly使用心得总结","dateModified":"2019-01-04T21:52:29+08:00","datePublished":"2018-12-22T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/12/jeklly.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="MYXOF的博客" /></head>
+<body><header class="site-header" role="banner">
+
+    <div class="wrapper">
+
+        <a class="site-title" href="/">MYXOF的博客</a>
+
+        <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+            <div class="trigger">
+                <!--
+                    my_page.autogen is populated by the pagination logic for all pages
+                                    that are automatically created by the gem. Check for non-existence to exclude pagination pages from site.pages iterators
+                  -->
+
+                
+                
+                
+                
+                <a class="page-link" href="/about/">关于</a>
+                
+                
+                
+                <a class="page-link" href="/amusement/">娱乐</a>
+                
+                
+                
+                <a class="page-link" href="/research/">研究</a>
+                
+                
+                
+                <a class="page-link" href="/skills/">技巧</a>
+                
+                
+                
+                <a class="page-link" href="/japanese/">日本語の勉強</a>
+                
+                
+                
+                <a class="page-link" href="/books/">书单</a>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </nav>
+
+    </div>
+
+</header>
+<main class="page-content" aria-label="Content">
+    <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Jeklly使用心得总结</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-12-22T00:00:00+08:00" itemprop="datePublished">
+        <!---->
+        <!--Dec 22, 2018-->
+        最后修改于 Jan 4, 2019 | 共计332字 | 转载请注明出处
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="markdown-toc">
+  <li><a href="#安装--自动部署" id="markdown-toc-安装--自动部署">安装 &amp; 自动部署</a></li>
+  <li><a href="#文件结构" id="markdown-toc-文件结构">文件结构</a>    <ul>
+      <li><a href="#_configyml" id="markdown-toc-_configyml">_config.yml</a></li>
+      <li><a href="#_includes" id="markdown-toc-_includes">_includes</a></li>
+      <li><a href="#layouts" id="markdown-toc-layouts">layouts</a></li>
+      <li><a href="#_posts" id="markdown-toc-_posts">_posts</a></li>
+      <li><a href="#_site" id="markdown-toc-_site">_site</a></li>
+      <li><a href="#gemfile" id="markdown-toc-gemfile">Gemfile</a></li>
+    </ul>
+  </li>
+  <li><a href="#写博客" id="markdown-toc-写博客">写博客</a></li>
+  <li><a href="#增加一个栏目" id="markdown-toc-增加一个栏目">增加一个栏目</a></li>
+  <li><a href="#分页功能" id="markdown-toc-分页功能">分页功能</a></li>
+  <li><a href="#参考" id="markdown-toc-参考">参考</a></li>
+</ul>
+
+<blockquote>
+  <p>折腾了半天，Jeklly终于正常跑起来了，总结下一些注意事项，更多用法还需参考官网文档(https://www.jekyll.com.cn/docs/home/)</p>
+</blockquote>
+
+<p>建议直接根据<a href="https://www.jekyll.com.cn/docs/sites/">源码</a>学习，多动手试一试。</p>
+
+<h2 id="安装--自动部署">安装 &amp; 自动部署</h2>
+
+<p>需要先安装好<code class="highlighter-rouge">ruby</code>和<code class="highlighter-rouge">gem</code>，ruby的版本最好大于2.4，一般安装好了ruby，gem页自动安装好了</p>
+
+<p>当Ruby安装完成之后，再安装jekyll</p>
+
+<pre><code class="language-$xslt">~ $ gem install jekyll
+~ $ jekyll -version
+
+~ $ jekyll new my-site
+~ $ cd my-site
+~/my-site $ bundle install --without test
+~/my-site $ jekyll serve
+</code></pre>
+
+<p>自动部署可以直接看参考<a href="https://github.com/MyXOF/MyXOF.github.io">项目</a>里面的<code class="highlighter-rouge">.travis.yml</code>文件和<code class="highlighter-rouge">script/deploy.sh</code>文件里面的内容。</p>
+
+<p>一般直接拷贝就行了，记得把<code class="highlighter-rouge">script/deploy.sh</code>里面的<code class="highlighter-rouge">git config user.email "xxx"</code>改成自己的，其他不需要做太多修改。</p>
+
+<h2 id="文件结构">文件结构</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── _config.yml
+├── _includes
+|   ├── footer.html
+|   └── header.html
+├── _layouts
+|   ├── default.html
+|   └── post.html
+├── _posts
+|   ├── 2007-10-29-why-every-programmer-should-play-nethack.textile
+|   └── 2009-04-26-barcamp-boston-4-roundup.textile
+├── _site
+├── Gemfile
+├── scripts
+|   ├── build.sh
+|   └── depoly.sh
+└── index.md
+</code></pre></div></div>
+
+<h3 id="_configyml">_config.yml</h3>
+
+<p>相当于一个配置文件，在整个网站全局可用。在开发调试的阶段，如果对这个文件进行了修改，需要重启<code class="highlighter-rouge">jekyll serve</code></p>
+
+<h3 id="_includes">_includes</h3>
+
+<p>存放类似页面组件，例如：导航栏，底栏。总之，一切能复用的页面设计都可以放这里。</p>
+
+<h3 id="layouts">layouts</h3>
+
+<p>包裹在文章外部的网页模板</p>
+
+<h3 id="_posts">_posts</h3>
+
+<p>存放自己的博客文件。文件名必须是<code class="highlighter-rouge">年-月-日-标题.xxx</code>，文件名后缀可以使<code class="highlighter-rouge">html</code>，<code class="highlighter-rouge">md</code>和<code class="highlighter-rouge">textfile</code>。</p>
+
+<h3 id="_site">_site</h3>
+
+<p>存放构建完成之后的的页面（默认）。最好将这个目录放进.gitignore文件中。</p>
+
+<h3 id="gemfile">Gemfile</h3>
+
+<p>依赖文件，当执行<code class="highlighter-rouge">bundle install</code>的时候，就根据这个文件安装对应的依赖。</p>
+
+<h2 id="写博客">写博客</h2>
+
+<p>写博客十分容易，只要去<code class="highlighter-rouge">_posts</code>文件加下创建一个<code class="highlighter-rouge">年-月-日-标题.xxx</code>文件，在文件的开头进行一些设置</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+# 页面的格式类型，post表示博客页面的格式
+layout: post
+# 博客标题
+title: Jeklly使用心得总结
+# 博客副标题
+description: （更新中...）.
+# 博客URL地址，和文件名对应
+path: _posts/2018-12-22-jeklly.md
+# 给博客打一些tag标签，便于后面的检索分类
+tags: [skills,jeklly]
+---
+</code></pre></div></div>
+
+<p>如果是md格式的文件，下面就可以按照md格式写东西了，jeklly会自动把md格式转化为html格式。</p>
+
+<h2 id="增加一个栏目">增加一个栏目</h2>
+
+<p>加入想要增加一个“读书”栏目，并且在导航栏上显示，也十分容易实现。现在根目录下创建<code class="highlighter-rouge">books</code>文件夹，在文件夹里面创建一个<code class="highlighter-rouge">index.md</code>文件和<code class="highlighter-rouge">_posts</code>文件夹。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── books
+|   ├── _posts
+|   └── index.md
+└── index.md
+</code></pre></div></div>
+
+<p>在<code class="highlighter-rouge">index.md</code>文件里面增加下面的内容</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: page
+# 将显示在导航栏上
+title: 读书
+categories: ['read']
+# 这样就可以在 http://localhost:4000/read/里面看到了
+permalink: /read/
+---
+
+</code></pre></div></div>
+<p>因为这也是一个md文件，也可以在下面写一些内容，作为“读书”页面的首页内容</p>
+
+<h2 id="分页功能">分页功能</h2>
+
+<p>如果博客比较多，一个页面全部显示不太美观，可以分页显示。</p>
+
+<p>这里就要用到<code class="highlighter-rouge">jekyll-paginate-v2</code>插件。建议直接从<a href="https://github.com/sverrirs/jekyll-paginate-v2/tree/master/examples/01-typicalblog">这个项目</a>拷贝修改。</p>
+
+<p>下面说下主要的修改。</p>
+
+<p>首先是Gemfile增加下面的插件</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>group :jekyll_plugins do
+  gem "jekyll-paginate-v2"
+end
+</code></pre></div></div>
+
+<p>_config.yml增加下面的内容</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># theme: jekyll-theme-cayman
+plugins:
+  - jekyll-paginate-v2
+
+plugins_dir:
+  - jekyll-paginate-v2
+
+# Produces a cleaner folder structure when using categories
+permalink: /:year/:month/:title.html
+
+# Pagination Settings
+pagination:
+  enabled: true
+  per_page: 8
+  offset: 0
+  permalink: '/page/:num/'
+  title: ':title - page :num of :max'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
+</code></pre></div></div>
+
+<p>然后再index.md里面允许分页功能</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: home
+pagination:
+    enabled: true
+---
+</code></pre></div></div>
+
+<p>重启服务就可以看到分页功能了</p>
+
+<h2 id="参考">参考</h2>
+
+<ul>
+  <li>常用变量。https://www.jekyll.com.cn/docs/variables/</li>
+  <li>目录结构。https://www.jekyll.com.cn/docs/structure/</li>
+  <li>撰写博客。https://www.jekyll.com.cn/docs/posts/</li>
+  <li>分页插件jekyll-paginate-v2。https://github.com/sverrirs/jekyll-paginate-v2</li>
+</ul>
+
+  </div>
+
+  <script src="https://unpkg.com/vanilla-back-to-top@7.2.0/dist/vanilla-back-to-top.min.js"></script>
+  <script>addBackToTop({
+    backgroundColor: '#fff',
+    innerHTML: 'Back to Top',
+    textColor: '#333'
+  })</script>
+  <style>
+    #back-to-top {
+      border: 1px solid #ccc;
+      border-radius: 0;
+      font-family: sans-serif;
+      font-size: 14px;
+      width: 100px;
+      text-align: center;
+      line-height: 30px;
+      height: 30px;
+    }
+  </style><a class="u-url" href="/2018/12/jeklly.html" hidden></a>
+</article>
+
+    </div>
+</main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">MYXOF的博客</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">MYXOF的博客</li><li><a class="u-email" href="mailto:xuyithuss@126.com">xuyithuss@126.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/MyXOF"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">MyXOF</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Copyright © 2018 MYXOF. All Right Reserved.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
